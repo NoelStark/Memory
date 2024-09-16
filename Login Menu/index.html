@@ -1,10 +1,31 @@
+<!DOCTYPE html>
 <html lang="en">
+    
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="Author" content="R">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
+    <div class="container">
+        <h1>Welcome To Memory Game</h1>
+        <h2>Sign in to your account using your Username and Password</h2>
+        <form action="http://127.0.0.1:5501/index.html" method="get">
+            <p>
+                <label for="UserName">Username</label>
+                <input type="text" name="UserName" id="UserName" autocomplete="on" placeholder="xxxxxx" required>
+            </p>
+            <p>
+                <label for="PassWord">Password</label>
+                <input type="password" name="PassWord" id="PassWord" autocomplete="on" placeholder="xxxxxx" required>
+            </p>
+            <p>
+                <button type="submit">Login</button>
+            </p>
+        </form>
+    </div>
 </body>
-</html>>
+
+</html>
