@@ -36,9 +36,7 @@ html, body{
  .settings-container .settings-buttons button{
     font-size: 20px;
     font-style: bold;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
- 
- 
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5); 
     width: 120px;
     height: 120px;
     border: 5px solid #AFBDD3;
@@ -84,7 +82,7 @@ html, body{
  
  .settings-container .settings-buttons button:hover{
     transition: background-color 0.3s ease;
-    box-shadow: inset 0 0 20px 10px rgba(221, 221, 221, 0.6),
+    box-shadow: inset 0 0 20px 10px rgba(189, 189, 189, 0.6),
     1px 15px 20px 10px rgba(0, 0, 0, 0.2),
     0 2px 50px 10px rgba(151, 151, 151, 0.4);
  }
