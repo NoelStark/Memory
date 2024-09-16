@@ -1,10 +1,12 @@
-import name from "../Settingsmenu/settings.js"
+import data from "../temp.js"
 
 // Get all elements with class="closebtn"
 var close = document.getElementsByClassName("closebtn");
 
-close[0].onclick = function() {
-    // Change the text inside the <span> element
-    this.textContent = name;
+// When someone clicks on a close button
+close[0].onclick = function(){
+
+
+this.textContent = data[0] + " " + data[1];
 }
 
