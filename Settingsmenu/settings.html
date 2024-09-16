@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="settings.css">
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <link rel="stylesheet" href="settings.css">
 </head>
 <body>
-    <div class="settings-container">
-        <h1>Game Menu</h1>
+   <div class="settings-container">
+       <h1>Settings</h1>
+       <h2>Game Difficulty</h2>
        <div class="settings-buttons">
-        <button>K</button>
+          <button onclick="HandleClick('EasyMode')" class="easyBtn">Easy</button>
+          <button onclick="HandleClick('MediumMode')" class="mediumBtn">Medium</button>
+          <button onclick="HandleClick('HardMode')" class="hardBtn">Hard</button>
        </div>
-    </div>
+       <h2>Timer</h2>
+       <button onclick="HandleClick('Timer')" class="timerBtn">Off</button>
+   </div>
 
-    <script type="module" src="gamemenu.js"></script>
+
+   <script src="settings.js"></script>
 </body>
 </html>
