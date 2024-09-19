@@ -7,16 +7,24 @@
    <link rel="stylesheet" href="settings.css">
 </head>
 <body>
+   <div>
+      <ul class="navbar">
+          <li><a href="#menu">Icon</a></li>
+          <li>Game Menu</a></li>
+          <li><a href="#exit">Exit</a></li>
+      </ul>
+  </div>
+
    <div class="settings-container">
        <h1>Settings</h1>
        <h2>Game Difficulty</h2>
        <div class="settings-buttons">
-          <button onclick="HandleClick('EasyMode')" class="easyBtn">Easy</button>
-          <button onclick="HandleClick('MediumMode')" class="mediumBtn">Medium</button>
-          <button onclick="HandleClick('HardMode')" class="hardBtn">Hard</button>
+          <button id="easyBtn">Easy</button>
+          <button id="mediumBtn">Medium</button>
+          <button id="hardBtn">Hard</button>
        </div>
        <h2>Timer</h2>
-       <button onclick="HandleClick('Timer')" class="timerBtn">Off</button>
+       <button onclick="HandleClick('Timer')" id="timerBtn">Off</button>
    </div>
 
 
