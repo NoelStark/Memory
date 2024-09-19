@@ -1,13 +1,19 @@
-import scores from '../temp.js';
+/*import scores from '../temp.js';*/
 let arr = [];
 
+/*
 var close = document.getElementsByClassName("closebtn");
 
 close[0].onclick = function(){
     arr.push(score[0]);
     this.textContent = arr[0].score + " " + arr[0].name + " " + arr[0].time + " " + arr[0].date;
-}
-
+    }*/
+   
+let scores = [
+    {name: 'Jöns',date: '2024-03-10', score:'25', time:'3m 31s' },
+    {name: 'Jöns',date: '2024-03-10', score:'25', time:'3m 31s'},
+    {name: 'Jöns',date: '2024-03-10', score:'25', time:'3m 31s'}
+];
 
 let table = document.querySelector("table tbody");
 
@@ -16,10 +22,10 @@ function fill_leaderboard(){
         let row = document.createElement("tr");
         row.innerHTML = `
         <td>${index + 1}</td>
-        <td>${score.score}</td>
         <td>${score.name}</td>
+        <td>${score.date}</td>
         <td>${score.time}</td>
-        <td>${score.date}</td>`;
+        <td>${score.score}</td>`;
 
         table.appendChild(row);
     });
