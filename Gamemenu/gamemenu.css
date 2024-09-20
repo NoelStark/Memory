@@ -40,29 +40,63 @@ html, body {
 }
 
 .navbar li:first-child {
-    padding-left: 120px;
+    padding-left: 40px;
 }
 
 .navbar li:last-child {
-    padding-right: 120px;
+    padding-right: 40px;
 }
 
-.hamburger-menu{
+#hamburger-menu{
     position: absolute;
     top: 100px;
     background: #040404;
-    left: 0;
+    left: -200px;
     height: 100%;
-    width: 10%;
+    width: 12%;
+    display: none;
 }
-.hamburger-menu ul{
+#hamburger-menu ul{
     list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-.hamburger-menu ul li a{
+#hamburger-menu ul li{
+    padding: 50px 30px;
+    text-align: left;
+}
+
+#hamburger-menu ul li a{
     text-decoration: none;
     color: white;
+    font-size: 18px;
+    font-weight: 500;
 }
+#hamburger-menu.open{
+    display: block;
+    animation: slidein 0.5s forwards;
+}
+
+#hamburger-menu.closing{
+    animation: slideout 0.5s forwards;
+    display: block;
+}
+
+@keyframes slidein{
+    from {left:-200px;}
+    to {left:0;}
+}
+@keyframes slideout{
+    from {left:0;}
+    to {left:-200px;}
+}
+
+#hamburger-icon, #exit-Btn, .settingsBtn{
+    cursor: pointer;
+}
+
+
 /* Game Menu Container */
 #gameMenu-container {
     display: flex;
