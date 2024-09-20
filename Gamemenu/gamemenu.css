@@ -54,7 +54,6 @@ html, body {
     left: -200px;
     height: 100%;
     width: 12%;
-    display: none;
 }
 #hamburger-menu ul{
     list-style: none;
@@ -67,12 +66,22 @@ html, body {
     text-align: left;
 }
 
+/*Optional for change where the first item is larger than the others*/
+#hamburger-menu ul li:first-child {
+    font-size: 24px;
+    font-weight: 500;
+}
 #hamburger-menu ul li a{
     text-decoration: none;
     color: white;
-    font-size: 18px;
-    font-weight: 500;
+    font-weight: 400;
 }
+
+#hamburger-menu ul li:not(:first-child){
+    font-size: 18px;
+}
+
+
 #hamburger-menu.open{
     display: block;
     animation: slidein 0.5s forwards;
@@ -92,8 +101,18 @@ html, body {
     to {left:-200px;}
 }
 
-#hamburger-icon, #exit-Btn, .settingsBtn{
+#hamburger-icon,#exit-Icon, #hamburger-exit, .settingsBtn, .exitBtn{
     cursor: pointer;
+}
+
+#hamburger-exit{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+#hamburger-exit a{
+    color: white;
 }
 
 
