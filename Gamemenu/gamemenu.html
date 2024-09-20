@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Menu and Settings</title>
     <link rel="stylesheet" href="gamemenu.css">
-    <link rel="stylesheet" href="settings.css">
 </head>
 <body>
     <!-- Navbar -->
@@ -20,7 +19,7 @@
     <div id="hamburger-menu">
         <ul>
             <li><a href="#">Play</a></li>
-            <li><a href="#">Leaderboard</a></li>
+            <li><a id="gameMenu-leaderboardBtn">Leaderboard</a></li>
             <li><a id="gameMenu-settingsBtn" class="settingsBtn">Settings</a></li>
             <li><a id="hamburger-exit"><img id="exit-Icon" src="exit.png">Exit</a></li>
         </ul>
@@ -49,6 +48,25 @@
         <button id="settings-timerBtn">Off</button>
     </div>
 
+    <!-- Leaderboard Menu Section (Initially Hidden) -->
+    <div id="leaderboard-container" class="leaderboard-container" style="display:none;">
+    
+        <table id="leaderboard-header">
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
     <script type="module" src="gamemenu.js"></script>
     <script src="settings.js"></script>
 
@@ -56,20 +74,28 @@
         // JavaScript to switch views between Game Menu and Settings Menu
         const gameMenuContainer = document.getElementById('gameMenu-container');
         const settingsMenuContainer = document.getElementById('settingsMenu-container');
+        const leaderboardMenuContainer = document.getElementById('leaderboard-container')
+
         const settingsBtn = document.getElementById('gameMenu-settingsBtn');
         const exitSettingsBtn = document.getElementById('gameMenu-exitBtn');
+        const leaderboardBtn = document.getElementById('gameMenu-leaderboardBtn')
+
 
         // Event listener for the Settings button to show the settings view
         settingsBtn.addEventListener('click', () => {
             gameMenuContainer.style.display = 'none';
+            leaderboardMenuContainer.style.display = 'none';
             settingsMenuContainer.style.display = 'block';
         });
 
-        // Optional: Event listener to go back to the Game Menu (can be attached to any button)
-        exitSettingsBtn.addEventListener('click', () => {
+        // Event listener for the Settings button to show the settings view
+        leaderboardBtn.addEventListener('click', () => {
+            gameMenuContainer.style.display = 'none';
             settingsMenuContainer.style.display = 'none';
-            gameMenuContainer.style.display = 'block';
+            leaderboardMenuContainer.style.display = 'block';
+
         });
+        
     </script>
 </body>
 </html>

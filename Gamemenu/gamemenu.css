@@ -255,3 +255,55 @@ html, body {
     1px 15px 20px 10px rgba(0, 0, 0, 0.2),
     0 2px 50px 10px rgba(98, 98, 98, 0.4);
 }
+#leaderboard-container{
+    width: 80%;
+}
+table{
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+
+}
+table thead{
+    background: #171921;
+}
+
+table th, td{
+    color: white;
+    padding: 25px;
+    text-align: center;
+
+}
+table td{
+    font-size: 18px;
+    font-weight: 400;
+}
+table th{
+    background: #171921;
+    font-size: 20px;
+}
+table tbody tr{
+    border-radius: 6px;
+    background: 
+    linear-gradient(to bottom right, #20242F 9%, #10141D 50%) bottom right / 50% 50% no-repeat, 
+    linear-gradient(to bottom left, #20242F 9%, #10141D 50%) bottom left / 50% 50% no-repeat, 
+    linear-gradient(to top left, #20242F 9%, #10141D 50%) top left / 50% 50% no-repeat, 
+    linear-gradient(to top right, #20242F 9%, #10141D 50%) top right / 50% 50% no-repeat;
+    background-attachment: fixed;
+}
+
+
+table td:nth-child(5) {
+    font-size: 20px;
+    font-weight: 500;
+    background-color: #BC194F;
+    border-radius: 10px;
+    width: 40px;
+    height: 40px;
+    margin: auto;
+    margin-top: 10px;
+    display: flex;  /* Use flexbox for perfect centering */
+    justify-content: center;  /* Center horizontally */
+    align-items: center;  /* Center vertically */
+}
