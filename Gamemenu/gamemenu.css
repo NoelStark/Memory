@@ -47,6 +47,7 @@ html, body {
     padding-right: 40px;
 }
 
+/*Hamburger Menu Styling*/
 #hamburger-menu{
     position: absolute;
     top: 100px;
@@ -120,6 +121,7 @@ html, body {
     height: auto;
 }
 
+/*Animations for the hamburger menu*/
 @keyframes slidein{
     from {left:-200px;}
     to {left:0;}
@@ -269,6 +271,8 @@ html, body {
     1px 15px 20px 10px rgba(0, 0, 0, 0.2),
     0 2px 50px 10px rgba(98, 98, 98, 0.4);
 }
+
+/*Leaderboard Container*/
 #leaderboard-container{
     width: 80%;
 }
