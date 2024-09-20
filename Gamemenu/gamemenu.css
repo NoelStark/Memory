@@ -1,9 +1,9 @@
-*{
+/* General Styling */
+* {
     box-sizing: border-box;
 }
 
-
-html, body{
+html, body {
     background: #1C1F2A;
     width: 100%;
     height: 100vh;
@@ -14,8 +14,10 @@ html, body{
     flex-direction: column;
     align-items: center;
 }
-.navbar{
-    background: #000000;
+
+/* Navbar Styling */
+.navbar {
+    background: #040404;
     color: white;
     display: flex;
     list-style: none;
@@ -29,40 +31,58 @@ html, body{
     font-weight: 500;
     margin-bottom: 40px;
 }
-.navbar a{
+
+.navbar a {
     font-size: 20px;
     font-weight: 500;
     text-decoration: none;
     color: white;
 }
 
-.navbar li:first-child{
+.navbar li:first-child {
     padding-left: 120px;
 }
 
-.navbar li:last-child{
+.navbar li:last-child {
     padding-right: 120px;
 }
-/*
-.menu-container {
+
+.hamburger-menu{
+    position: absolute;
+    top: 100px;
+    background: #040404;
+    left: 0;
+    height: 100%;
+    width: 10%;
+}
+.hamburger-menu ul{
+    list-style: none;
+}
+
+.hamburger-menu ul li a{
+    text-decoration: none;
+    color: white;
+}
+/* Game Menu Container */
+#gameMenu-container {
     display: flex;
     flex-direction: column;
     text-align: center;
     padding: 20px;
-    box-shadow: 0px 4px 10px rgba(0,0,0,0.2), inset 0 2px 4px rgba(255, 255, 255, 0.5);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2), inset 0 2px 4px rgba(255, 255, 255, 0.5);
     width: 600px;
     color: white;
     align-items: center;
 }
-*/
-.menu-container .menu-buttons {
+
+#gameMenu-container .gameMenu-buttons {
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 20px;
 }
 
-.menu-container .menu-buttons button {
+#gameMenu-container .gameMenu-buttons button {
     height: 70px;
     width: 200px;
     font-size: 20px;
@@ -79,17 +99,106 @@ html, body{
     cursor: pointer;
 }
 
-.menu-container .menu-buttons button:hover {
+#gameMenu-container .gameMenu-buttons button:hover {
     transform: translateY(-3px);
     box-shadow: 2px 8px 20px rgba(0, 0, 0, 0.5);
 }
 
-.menu-container .menu-buttons .playBtn {
+#gameMenu-container .gameMenu-buttons .playBtn {
     background: linear-gradient(to right,#0f886c, #169153, #4db137 70%);
     border: 3px solid rgb(45, 120, 49);
 }
 
-.menu-container .menu-buttons .exitBtn {
+#gameMenu-container .gameMenu-buttons .exitBtn {
     background: linear-gradient(to right, #ff416c, #ff4b2b);
     border: 3px solid rgb(205, 46, 18);
+}
+
+/* Settings Container */
+#settingsMenu-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2), inset 0 2px 4px rgba(80, 80, 80, 0.5);
+    width: 600px;
+    color: white;
+    align-items: center;
+}
+
+#settingsMenu-container .settings-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 50px;
+}
+
+#settingsMenu-container .settings-buttons button {
+    font-size: 20px;
+    font-style: bold;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5); 
+    width: 120px;
+    height: 120px;
+    border: 5px solid #AFBDD3;
+    border-radius: 50%;
+}
+
+#settingsMenu-container .settings-buttons #settings-easyBtn {
+    background: radial-gradient(circle at center,#BEFEAF, #22E281, #0A614D 70%);
+    border: 5px solid rgb(54, 122, 57, 1);
+    box-shadow:
+    inset -4px -4px 8px rgb(32, 246, 89),
+    inset 1px 4px 8px rgb(25, 186, 0),
+    1px 15px 20px 10px rgba(0, 0, 0, 0.2),
+    0 2px 50px 10px rgba(98, 98, 98, 0.4);
+}
+
+#settingsMenu-container .settings-buttons #settings-mediumBtn {
+    background: radial-gradient(circle at center,#F9E87D, #ffec41, #d3b700 70%);
+    border: 5px solid rgb(195, 182, 0);
+    box-shadow:
+    inset -4px -4px 8px rgb(166, 161, 0),
+    inset 1px 4px 8px rgb(254, 232, 31),
+    1px 15px 20px 10px rgba(0, 0, 0, 0.2),
+    0 2px 50px 10px rgba(98, 98, 98, 0.4);
+}
+
+#settingsMenu-container .settings-buttons #settings-hardBtn {
+    background: radial-gradient(circle at center,#F7554B, #d43f4e, #cf3355 70%);
+    border: 5px solid rgb(199, 13, 32);
+    box-shadow:
+    inset -4px -4px 8px rgb(246, 55, 55),
+    inset 1px 4px 8px rgb(249, 61, 61),
+    1px 15px 20px 10px rgba(0, 0, 0, 0.2),
+    0 2px 50px 10px rgba(98, 98, 98, 0.4);
+}
+
+#settingsMenu-container .settings-buttons button:hover {
+    transition: background-color 0.3s ease;
+    box-shadow: inset 0 0 20px 10px rgba(148, 148, 148, 0.6);
+}
+
+#settingsMenu-container #settings-timerBtn {
+    width: 200px;
+    height: 70px;
+    border-radius: 10%;
+    font-size: 20px;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+    border: 5px solid rgb(199, 13, 32);
+    background: radial-gradient(ellipse 250px 130px at center,#ff3429, #b62937, #c70832 70%);
+    box-shadow:
+    inset -4px -4px 8px rgb(246, 55, 55),
+    inset 1px 4px 8px rgb(249, 61, 61),
+    1px 15px 20px 10px rgba(0, 0, 0, 0.2),
+    0 2px 50px 10px rgba(98, 98, 98, 0.4);
+}
+
+#settingsMenu-container #settings-timerBtn:hover {
+    background: radial-gradient(ellipse 250px 130px at center,#ff534a, #b73d49, #e11a45 70%);
+    transition: background-color 0.3s ease;
+    box-shadow:
+    inset -4px -4px 8px rgb(246, 55, 55),
+    inset 1px 4px 8px rgb(249, 61, 61),
+    1px 15px 20px 10px rgba(0, 0, 0, 0.2),
+    0 2px 50px 10px rgba(98, 98, 98, 0.4);
 }

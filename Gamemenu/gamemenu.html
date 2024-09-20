@@ -3,29 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Game Menu and Settings</title>
     <link rel="stylesheet" href="gamemenu.css">
+    <link rel="stylesheet" href="settings.css">
 </head>
 <body>
+    <!-- Navbar -->
     <div>
         <ul class="navbar">
-            <li><a href="#menu">Icon</a></li>
-            <li>Game Menu</a></li>
+            <li><a href="#menu" id="hamburger-icon">Icon</a></li>
+            <li>Game Menu</li>
             <li><a href="#exit">Exit</a></li>
         </ul>
     </div>
-    <div class="menu-container">
-        <div class="menu-buttons">
-            <button id="playBtn" class="playBtn">Play</button>
-            <button id="leaderBtn">Leaderboard</button>
-            <button id="settingsBtn">Settings</button>
-            <button id="exitBtn" class="exitBtn">Exit</button>
+
+    <div class="hamburger-menu">
+        <ul>
+            <li><a href="#">Play</a></li>
+            <li><a href="#">Leaderboard</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Exit</a></li>
+        </ul>
+    </div>
+
+    <!-- Game Menu Section -->
+    <div id="gameMenu-container" class="menu-container">
+        <div class="gameMenu-buttons">
+            <button id="gameMenu-playBtn" class="playBtn">Play</button>
+            <button id="gameMenu-leaderBtn">Leaderboard</button>
+            <button id="gameMenu-settingsBtn" class="settingsBtn">Settings</button>
+            <button id="gameMenu-exitBtn" class="exitBtn">Exit</button>
         </div>
     </div>
 
-    <script type="module" src="gamemenu.js">
+    <!-- Settings Menu Section (Initially Hidden) -->
+    <div id="settingsMenu-container" class="settings-container" style="display:none;">
+        <h1>Settings</h1>
+        <h2>Game Difficulty</h2>
+        <div class="settings-buttons">
+            <button id="settings-easyBtn">Easy</button>
+            <button id="settings-mediumBtn">Medium</button>
+            <button id="settings-hardBtn">Hard</button>
+        </div>
+        <h2>Timer</h2>
+        <button id="settings-timerBtn">Off</button>
+    </div>
 
-    
+    <script type="module" src="gamemenu.js"></script>
+    <script src="settings.js"></script>
+
+    <script>
+        // JavaScript to switch views between Game Menu and Settings Menu
+        const gameMenuContainer = document.getElementById('gameMenu-container');
+        const settingsMenuContainer = document.getElementById('settingsMenu-container');
+        const settingsBtn = document.getElementById('gameMenu-settingsBtn');
+        const exitSettingsBtn = document.getElementById('gameMenu-exitBtn');
+
+        // Event listener for the Settings button to show the settings view
+        settingsBtn.addEventListener('click', () => {
+            gameMenuContainer.style.display = 'none';
+            settingsMenuContainer.style.display = 'block';
+        });
+
+        // Optional: Event listener to go back to the Game Menu (can be attached to any button)
+        exitSettingsBtn.addEventListener('click', () => {
+            settingsMenuContainer.style.display = 'none';
+            gameMenuContainer.style.display = 'block';
+        });
     </script>
 </body>
 </html>
