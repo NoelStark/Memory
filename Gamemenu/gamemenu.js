@@ -1,13 +1,36 @@
-function openSettings(){
-    window.location.href = "../Settingsmenu/settings.html"
-    arr.push(score);
-}
+/*Switching view*/
 
-document.addEventListener(
-    'DOMContentLoaded', () => {
-    document.getElementById('settingsBtn').addEventListener('click', openSettings);
+// JavaScript to switch views between Game Menu and Settings Menu
+const gameMenuContainer = document.getElementById('gameMenu-container');
+const settingsMenuContainer = document.getElementById('settingsMenu-container');
+const leaderboardMenuContainer = document.getElementById('leaderboard-container')
+
+const settingsBtn = document.getElementById('gameMenu-settingsBtn');
+const exitSettingsBtn = document.getElementById('gameMenu-exitBtn');
+const leaderboardBtn = document.getElementById('gameMenu-leaderboardBtn')
+
+
+// Event listener for the Settings button to show the settings view
+settingsBtn.addEventListener('click', () => {
+    gameMenuContainer.style.display = 'none';
+    leaderboardMenuContainer.style.display = 'none';
+    settingsMenuContainer.style.display = 'block';
+});
+
+// Event listener for the Leaderboard button to show the leaderboard view
+leaderboardBtn.addEventListener('click', () => {
+    gameMenuContainer.style.display = 'none';
+    settingsMenuContainer.style.display = 'none';
+    leaderboardMenuContainer.style.display = 'block';
+
+    table.innerHTML = '';
+    fill_leaderboard();
 
 });
+
+/* Navbar interactions*/
+
+//Interaction to open and close Hamburger menu
 
 document.addEventListener('DOMContentLoaded', () => {
     const hamburgerIcon = document.getElementById('hamburger-icon');
@@ -27,7 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+/* Leaderboard interactions*/
 
+//The code that saves leaderboard data and creates rows
 import scores from '../temp.js';
 let score = {score:20, name:"Jöns",time:"1m 32s",date:"2024-10-20"}
 let arr = [];
@@ -49,6 +74,7 @@ let scores = [
 
 let table = document.querySelector("table tbody");
 
+
 //Creates the rows and fills with data
 function fill_leaderboard(){
     arr.forEach((score, index) => {
@@ -61,6 +87,9 @@ function fill_leaderboard(){
         <td>${score.score}</td>`;
 
         table.appendChild(row);
+        setTimeout(() => {
+            row.classList.add('animated-Row');
+        }, index * 100);
     });
 }
 //Function to take time and convert it into seconds
@@ -82,4 +111,5 @@ arr.sort((a,b) => {
 });
 
 
-document.addEventListener("DOMContentLoaded", fill_leaderboard);
+
+

@@ -123,8 +123,12 @@ html, body {
 
 /*Animations for the hamburger menu*/
 @keyframes slidein{
-    from {left:-200px;}
-    to {left:0;}
+    from {
+        left: -200px;
+    }
+    to{
+        left: 0;
+    }
 }
 @keyframes slideout{
     from {left:0;}
@@ -309,6 +313,7 @@ table tbody tr{
     linear-gradient(to top left, #20242F 9%, #10141D 50%) top left / 50% 50% no-repeat, 
     linear-gradient(to top right, #20242F 9%, #10141D 50%) top right / 50% 50% no-repeat;
     background-attachment: fixed;
+    opacity: 0;
 }
 
 
@@ -324,4 +329,21 @@ table td:nth-child(5) {
     display: flex;  /* Use flexbox for perfect centering */
     justify-content: center;  /* Center horizontally */
     align-items: center;  /* Center vertically */
+}
+
+
+@keyframes slideInRow{
+    from{
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to{
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.animated-Row{
+    opacity: 0;
+    animation: slideInRow 1s forwards;
 }
