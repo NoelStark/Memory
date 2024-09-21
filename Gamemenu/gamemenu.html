@@ -15,7 +15,7 @@
             <li><img id="exit-Icon" src="exit.png"></li>
         </ul>
     </div>
-
+    <!-- Hamburger Menu-->
     <div id="hamburger-menu">
         <ul>
             <li><a class="menu-Icon" id="gameMenu-playBtn">Play<img src="arrow.png" id="hamburger-play"></a></li>
@@ -68,34 +68,6 @@
     </div>
 
     <script type="module" src="gamemenu.js"></script>
-    <script src="settings.js"></script>
 
-    <script>
-        // JavaScript to switch views between Game Menu and Settings Menu
-        const gameMenuContainer = document.getElementById('gameMenu-container');
-        const settingsMenuContainer = document.getElementById('settingsMenu-container');
-        const leaderboardMenuContainer = document.getElementById('leaderboard-container')
-
-        const settingsBtn = document.getElementById('gameMenu-settingsBtn');
-        const exitSettingsBtn = document.getElementById('gameMenu-exitBtn');
-        const leaderboardBtn = document.getElementById('gameMenu-leaderboardBtn')
-
-
-        // Event listener for the Settings button to show the settings view
-        settingsBtn.addEventListener('click', () => {
-            gameMenuContainer.style.display = 'none';
-            leaderboardMenuContainer.style.display = 'none';
-            settingsMenuContainer.style.display = 'block';
-        });
-
-        // Event listener for the Settings button to show the settings view
-        leaderboardBtn.addEventListener('click', () => {
-            gameMenuContainer.style.display = 'none';
-            settingsMenuContainer.style.display = 'none';
-            leaderboardMenuContainer.style.display = 'block';
-
-        });
-        
-    </script>
 </body>
 </html>
