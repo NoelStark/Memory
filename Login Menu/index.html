@@ -20,8 +20,8 @@
           <label for="UserName">Username</label>
           <input
             type="text"
-            name="userName"
-            id="userName"
+            name="username"
+            id="username"
             autocomplete="on"
             placeholder="Enter Username"
             required
@@ -32,15 +32,16 @@
           <input
             type="password"
             name="PassWord"
-            id="passWord"
+            id="password"
             placeholder="xxxxxx"
             required
           />
         </p>
         <p>
-          <a href="../gamemenu/gamemenu.html">
-            <button type="button">Login</button>
-          </a>
+          <button type="button" id="loginButton">Login</button>
+        </p>
+        <p id="error" style="color: red; display: none">
+          Incorrect Username or password
         </p>
       </form>
     </div>
