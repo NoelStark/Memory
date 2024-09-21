@@ -68,6 +68,7 @@ input:focus {
 }
 
 p {
+    color: white;
     margin-bottom: 20px;
 }
 button {
