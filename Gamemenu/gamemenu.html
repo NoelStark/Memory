@@ -1,73 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Game Menu and Settings</title>
-    <link rel="stylesheet" href="gamemenu.css">
-</head>
-<body>
+    <link rel="stylesheet" href="gamemenu.css" />
+  </head>
+  <body>
     <!-- Navbar -->
     <div>
-        <ul class="navbar">
-            <li><img id="hamburger-icon" src="./assets/burger-menu.png"></li>
-            <li>Game Menu</li>
-            <li><img id="exit-Icon" src="./assets/exit.png"></li>
-        </ul>
+      <ul class="navbar">
+        <li><img id="hamburger-icon" src="./assets/burger-menu.png" /></li>
+        <li>Game Menu</li>
+        <li><img id="exit-Icon" src="./assets/exit.png" /></li>
+      </ul>
     </div>
     <!-- Hamburger Menu-->
     <div id="hamburger-menu">
-        <ul>
-            <li><a class="menu-Icon" id="gameMenu-playBtn">Play<img src="./assets/arrow.png" id="hamburger-play"></a></li>
-            <li><a class="menu-Icon" id="gameMenu-leaderboardBtn"><img src="./assets/leaderboard.png" id="hamburger-leaderboard">Leaderboard</a></li>
-            <li><a class="menu-Icon" id="gameMenu-settingsBtn"><img src="./assets/settings.png" id="hamburger-settings">Settings</a></li>
-            <li><a class="menu-Icon" id="gameMenu-exitBtn"><img src="./assets/exit.png" id="hamburger-exit">Exit</a></li>
-        </ul>
+      <ul>
+        <li>
+          <a class="menu-Icon" id="gameMenu-playBtn"
+            >Play<img src="./assets/arrow.png" id="hamburger-play"
+          /></a>
+        </li>
+        <li>
+          <a class="menu-Icon" id="gameMenu-leaderboardBtn"
+            ><img
+              src="./assets/leaderboard.png"
+              id="hamburger-leaderboard"
+            />Leaderboard</a
+          >
+        </li>
+        <li>
+          <a class="menu-Icon" id="gameMenu-settingsBtn"
+            ><img
+              src="./assets/settings.png"
+              id="hamburger-settings"
+            />Settings</a
+          >
+        </li>
+        <li>
+          <a class="menu-Icon" id="gameMenu-exitBtn"
+            ><img src="./assets/exit.png" id="hamburger-exit" />Exit</a
+          >
+        </li>
+      </ul>
     </div>
 
     <!-- Game Menu Section -->
     <div id="gameMenu-container" class="menu-container">
-        <div class="gameMenu-buttons">
-            <button id="gameMenu-playBtn" class="playBtn">Play</button>
-            <button id="gameMenu-leaderBtn">Leaderboard</button>
-            <button id="gameMenu-settingsBtn" class="settingsBtn">Settings</button>
-            <button id="gameMenu-exitBtn" class="exitBtn">Exit</button>
-        </div>
+      <div class="gameMenu-buttons">
+        <button id="gameMenu-playBtn" class="playBtn">Play</button>
+        <button id="gameMenu-leaderBtn">Leaderboard</button>
+        <button id="gameMenu-settingsBtn" class="settingsBtn">Settings</button>
+        <button id="gameMenu-exitBtn" class="exitBtn">Exit</button>
+      </div>
     </div>
 
     <!-- Settings Menu Section (Initially Hidden) -->
-    <div id="settingsMenu-container" class="settings-container" style="display:none;">
-        <h1>Settings</h1>
-        <h2>Game Difficulty</h2>
-        <div id="settings-buttons">
-            <button id="settings-easyBtn">Easy</button>
-            <button id="settings-mediumBtn">Medium</button>
-            <button id="settings-hardBtn">Hard</button>
-        </div>
-        <h2>Timer</h2>
-        <button id="settings-timerBtn">Off</button>
+    <div
+      id="settingsMenu-container"
+      class="settings-container"
+      style="display: none"
+    >
+      <h1>Settings</h1>
+      <h2>Game Difficulty</h2>
+      <div id="settings-buttons">
+        <button id="settings-easyBtn">Easy</button>
+        <button id="settings-mediumBtn">Medium</button>
+        <button id="settings-hardBtn">Hard</button>
+      </div>
+      <h2>Timer</h2>
+      <button id="settings-timerBtn">Off</button>
     </div>
 
     <!-- Leaderboard Menu Section (Initially Hidden) -->
-    <div id="leaderboard-container" class="leaderboard-container" style="display:none;">
-    
-        <table id="leaderboard-header">
-            <thead>
-                <tr>
-                    <th>Rank</th>
-                    <th>Name</th>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Score</th>
-                </tr>
-            </thead>
+    <div
+      id="leaderboard-container"
+      class="leaderboard-container"
+      style="display: none"
+    >
+      <table id="leaderboard-header">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Score</th>
+          </tr>
+        </thead>
 
-            <tbody>
-            </tbody>
-        </table>
+        <tbody></tbody>
+      </table>
     </div>
 
     <script type="module" src="gamemenu.js"></script>
-
-</body>
+  </body>
 </html>

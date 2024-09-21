@@ -28,6 +28,16 @@ leaderboardBtn.addEventListener('click', () => {
 
 });
 
+
+/* Försök att lägga till event för knapptryckningen blir konflikt någonstans med namn tror jag gameMenu-playBtn
+const playBtn = document.getElementById('gameMenu-playBtn');
+playBtn.addEventListener('click', () => {
+    // Omdirigera till gameboard.html
+    window.location.href = "../gameboard/gameboard.html";
+
+});
+*/
+
 /* Navbar interactions*/
 
 //Interaction to open and close Hamburger menu
