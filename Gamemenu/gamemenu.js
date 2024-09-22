@@ -16,7 +16,6 @@ settingsBtn.addEventListener('click', () => {
     leaderboardMenuContainer.style.display = 'none';
     settingsMenuContainer.style.display = 'block';
 });
-
 // Event listener for the Leaderboard button to show the leaderboard view
 leaderboardBtn.addEventListener('click', () => {
     gameMenuContainer.style.display = 'none';
@@ -24,9 +23,19 @@ leaderboardBtn.addEventListener('click', () => {
     leaderboardMenuContainer.style.display = 'block';
 
     table.innerHTML = '';
+
+    animate_Header();
+    setTimeout(1000);
     fill_leaderboard();
 
 });
+
+function animate_Header(){
+    const tableHeader = document.querySelector("table thead");
+    setTimeout(() => {
+        tableHeader.classList.add('animated-headerRow');
+    }, 100);
+}
 
 
 /* Försök att lägga till event för knapptryckningen blir konflikt någonstans med namn tror jag gameMenu-playBtn

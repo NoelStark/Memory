@@ -289,13 +289,13 @@ table{
 }
 table thead{
     background: #171921;
+    opacity: 0;
 }
 
 table th, td{
     color: white;
     padding: 25px;
     text-align: center;
-
 }
 table td{
     font-size: 18px;
@@ -343,7 +343,21 @@ table td:nth-child(5) {
     }
 }
 
+@keyframes fadeIn{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
 .animated-Row{
     opacity: 0;
     animation: slideInRow 1s forwards;
+}
+
+.animated-headerRow{
+    opacity:1;
+    animation: fadeIn 2s forwards;
 }
