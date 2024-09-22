@@ -61,7 +61,7 @@ h1 {
 
 .sidenav {
   height: 100%; 
-  width: 160px; 
+  width: 200px; 
   position: fixed; 
   z-index: 1; 
   top: 0; 
@@ -76,4 +76,15 @@ h1 {
   font-size: 25px;
   color: #818181;
   display: block;
+}
+
+button {
+  width: 150px;
+  padding: 10px 20px;
+  margin-left: 20px;
+  border-radius: 5px;
+  border-color: brown;
+  background-color: rgb(72, 43, 235);
+  font-size: 18px;
+  color: bisque;
 }
