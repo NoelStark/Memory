@@ -75,3 +75,8 @@ function checkMatch() {
 
 // När sidan laddas, skapa spelbordet
 document.addEventListener('DOMContentLoaded', createBoard);
+
+const mainMenuButton = document.getElementById('main-menu');
+mainMenuButton.addEventListener('click', () => {window.location.href = '../gamemenu/gamemenu.html'});
+const resetButton = document.getElementById('reset');
+resetButton.addEventListener('click', () => {location.reload()});
