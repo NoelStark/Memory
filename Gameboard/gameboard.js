@@ -5,12 +5,12 @@ const cards = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'A', 'B', 'C', 'D', 'E', 
 let flippedCards = [];
 let matchedCards = [];
 
-// Funktion för att blanda korten
+// blanda korten
 function shuffle(array) {
   return array.sort(() => 0.5 - Math.random());
 }
 
-// Funktion för att skapa spelbordet
+//  skapa spelbordet
 function createBoard() {
   const board = document.getElementById('game-board');
   const shuffledCards = shuffle(cards);
@@ -20,16 +20,32 @@ function createBoard() {
     const cardElement = document.createElement('div');
     cardElement.classList.add('card');
     cardElement.dataset.value = cardValue;
+
+    // Skapa img-tag för framsidan av kortet
+    const frontImage = document.createElement('img');
+    frontImage.src = `img/${cardValue}.jpg`;
+    frontImage.style.display = 'none';  // Döljer framsidan tills kortet vänds
+
+    // Lägg till framsidan (img) i kort-elementet
+    cardElement.appendChild(frontImage);
+
+    // Event listener för att vända kortet
     cardElement.addEventListener('click', flipCard);
-    board.appendChild(cardElement);  // Lägg till kortet på spelbordet
+
+    // Lägg till kortet på spelbordet
+    board.appendChild(cardElement);
   });
 }
 
-// Funktion för att vända kortet
+// vända kortet
 function flipCard() {
   const card = this;
   card.classList.add('flipped');
-  card.innerText = card.dataset.value;
+
+  // Visa framsidan (bilden) när kortet vänds
+  const frontImage = card.querySelector('img');
+  frontImage.style.display = 'block';  // Visa bilden
+
   flippedCards.push(card);
 
   if (flippedCards.length === 2) {
@@ -37,7 +53,7 @@ function flipCard() {
   }
 }
 
-// Funktion för att kontrollera om korten matchar
+// kontrollera om korten matchar
 function checkMatch() {
   const [card1, card2] = flippedCards;
   if (card1.dataset.value === card2.dataset.value) {
@@ -49,9 +65,9 @@ function checkMatch() {
   } else {
     setTimeout(() => {
       card1.classList.remove('flipped');
-      card1.innerText = '';
+      card1.querySelector('img').style.display = 'none';  // Döljer bilden igen
       card2.classList.remove('flipped');
-      card2.innerText = '';
+      card2.querySelector('img').style.display = 'none';  // Döljer bilden igen
       flippedCards = [];
     }, 1000);
   }
