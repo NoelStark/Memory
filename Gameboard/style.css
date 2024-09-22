@@ -42,6 +42,14 @@ h1 {
 .card.flipped {
   background-color: white;
   pointer-events: none;
+  background-image: none;
+}
+.card img {
+  display: none;
+}
+
+.card.flipped img {
+  display: block;
 }
 
 .sidenav {
