@@ -63,8 +63,9 @@ function checkMatch() {
     flippedCards = [];
     if (matchedCards.length === cards.length) {
       setTimeout(() => alert('You won!'), 500);
-      isChecking = false;
     }
+    isChecking = false;
+
   } else {
     setTimeout(() => {
       card1.classList.remove('flipped');
