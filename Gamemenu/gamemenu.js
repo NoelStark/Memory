@@ -1,10 +1,11 @@
 /*Switching view*/
 
 // JavaScript to switch views between Game Menu and Settings Menu
-const gameMenuContainer = document.getElementById('gameMenu-container');
+
+//const gameMenuContainer = document.getElementById('gameMenu-container');
 const settingsMenuContainer = document.getElementById('settingsMenu-container');
 const leaderboardMenuContainer = document.getElementById('leaderboard-container')
-const gameContainer = document.getElementById('game-board');
+const gameContainer = document.getElementById('game-container');
 
 const settingsBtn = document.getElementById('gameMenu-settingsBtn');
 const exitSettingsBtn = document.getElementById('gameMenu-exitBtn');
@@ -13,13 +14,17 @@ const leaderboardBtn = document.getElementById('gameMenu-leaderboardBtn')
 
 // Event listener for the Settings button to show the settings view
 settingsBtn.addEventListener('click', () => {
-    gameMenuContainer.style.display = 'none';
+   // gameMenuContainer.style.display = 'none';
+    gameContainer.style.display = 'none';
     leaderboardMenuContainer.style.display = 'none';
     settingsMenuContainer.style.display = 'block';
 });
+
+document.addEventListener('DOMContentLoaded', () => {
 // Event listener for the Leaderboard button to show the leaderboard view
 leaderboardBtn.addEventListener('click', () => {
-    gameMenuContainer.style.display = 'none';
+    //gameMenuContainer.style.display = 'none';
+    gameContainer.style.display = 'none';
     settingsMenuContainer.style.display = 'none';
     leaderboardMenuContainer.style.display = 'block';
 
@@ -30,6 +35,8 @@ leaderboardBtn.addEventListener('click', () => {
     fill_leaderboard();
 
 });
+})
+
 
 function animate_Header(){
     const tableHeader = document.querySelector("table thead");
@@ -157,6 +164,9 @@ function checkMatch() {
   }
 
 }
+
+// När sidan laddas, skapa spelbordet
+
 
 /* Leaderboard interactions*/
 
