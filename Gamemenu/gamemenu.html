@@ -47,15 +47,53 @@
         </li>
       </ul>
     </div>
+
+    <div id="login-container">
+      <h1>Welcome To Memory Game</h1>
+      <p>
+        Sign in to your account using your Username and Password,
+        <em>Have a Greate Game!</em>
+      </p>
+      <form id="loginForm">
+        <p>
+          <label for="UserName">Username</label>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            autocomplete="on"
+            placeholder="Enter Username"
+            required
+          />
+        </p>
+        <p>
+          <label for="password">Password</label>
+          <input
+            type="password"
+            name="PassWord"
+            id="password"
+            placeholder="xxxxxx"
+            required
+          />
+        </p>
+        <p>
+          <button type="button" id="loginButton">Login</button>
+        </p>
+        <p id="error" style="color: red; display: none">
+          Incorrect Username or password
+        </p>
+      </form>
+    </div>
+
     <!-- Game Section-->
-    <div id="game-container">
+    <div id="game-container" style="display: none;">
       <button id="reset">Reset</button>
       <div id="game-board" class="board">
         
       </div>
     </div>
 
-    <!-- Game Menu Section -->
+    <!-- Game Menu Section -->  
     <!--
     <div
      id="gameMenu-container" 

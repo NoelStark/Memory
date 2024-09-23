@@ -3,14 +3,22 @@
 // JavaScript to switch views between Game Menu and Settings Menu
 
 //const gameMenuContainer = document.getElementById('gameMenu-container');
+const loginContainer = document.getElementById('login-container');
+const gameContainer = document.getElementById('game-container');
 const settingsMenuContainer = document.getElementById('settingsMenu-container');
 const leaderboardMenuContainer = document.getElementById('leaderboard-container')
-const gameContainer = document.getElementById('game-container');
 
+const playBtn = document.getElementById('gameMenu-playBtn');
 const settingsBtn = document.getElementById('gameMenu-settingsBtn');
-const exitSettingsBtn = document.getElementById('gameMenu-exitBtn');
 const leaderboardBtn = document.getElementById('gameMenu-leaderboardBtn')
+const exitBtn = document.getElementById('gameMenu-exitBtn');
 
+
+playBtn.addEventListener('click', () =>{
+  gameContainer.style.display = 'block';
+  leaderboardMenuContainer.style.display = 'none';
+  settingsMenuContainer.style.display = 'none';
+});
 
 // Event listener for the Settings button to show the settings view
 settingsBtn.addEventListener('click', () => {
@@ -20,7 +28,6 @@ settingsBtn.addEventListener('click', () => {
     settingsMenuContainer.style.display = 'block';
 });
 
-document.addEventListener('DOMContentLoaded', () => {
 // Event listener for the Leaderboard button to show the leaderboard view
 leaderboardBtn.addEventListener('click', () => {
     //gameMenuContainer.style.display = 'none';
@@ -35,6 +42,12 @@ leaderboardBtn.addEventListener('click', () => {
     fill_leaderboard();
 
 });
+
+exitBtn.addEventListener("click",() => {
+  loginContainer.style.display = 'block';
+  gameContainer.style.display = 'none';
+  settingsMenuContainer.style.display = 'none';
+  leaderboardBtn.style.display = 'none';
 })
 
 
@@ -55,6 +68,22 @@ playBtn.addEventListener('click', () => {
 });
 */
 
+const validUsername = "player"
+const validPassword = "password"
+document.getElementById('loginButton').addEventListener('click', function() {
+  
+  
+  
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+  
+  if (username === validUsername && password === validPassword) {
+    loginContainer.style.display = 'none';
+    gameContainer.style.display = 'block';
+  } else {
+    document.getElementById('error').style.display = 'block';
+  }
+  })
 /* Navbar interactions*/
 
 //Interaction to open and close Hamburger menu

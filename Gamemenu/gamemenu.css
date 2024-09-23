@@ -52,9 +52,9 @@ html, body {
     position: absolute;
     top: 100px;
     background: #040404;
-    left: -200px;
+    left: -30%;
     height: 100%;
-    width: 13%;
+    width: 12%;
 }
 #hamburger-menu ul{
     list-style: none;
@@ -63,7 +63,6 @@ html, body {
 }
 
 #hamburger-menu ul li{
- 
     text-align: left;
 }
 
@@ -96,7 +95,7 @@ html, body {
 }
 
 #hamburger-menu.closing{
-    animation: slideout 0.5s forwards;
+    animation: slideout 1s forwards;
     display: block;
 }
 
@@ -124,15 +123,90 @@ html, body {
 /*Animations for the hamburger menu*/
 @keyframes slidein{
     from {
-        left: -200px;
+        left: -30%;
     }
     to{
-        left: 0;
+        left: 0%;
     }
 }
 @keyframes slideout{
     from {left:0;}
-    to {left:-200px;}
+    to {left:-30%;}
+}
+
+#login-container {
+    text-align: center;
+    border: 2px solid white;
+    padding: 50px;
+    background-color: #3b3fa3;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#login-container h1 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+#login-container h2 {
+    color: white;
+    margin-bottom: 40px;
+}
+
+#login-container form {
+    display: inline-block;
+    text-align: left;
+}
+
+#login-container label {
+    color: white;
+    font-weight: bold;
+}
+
+#login-container input {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid white;
+}
+
+#login-container input[type="text"], #login-container input[type="password"] {
+    background-color: #6e73dc;
+    color: white;
+}
+
+#login-container input::placeholder {
+    color: #ccc;
+}
+
+#login-container input:focus {
+    outline: none;
+    border-color: #fff;
+}
+
+#login-container p {
+    color: white;
+    margin-bottom: 20px;
+}
+#login-container button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    width: 100%;
+}
+
+#login-container button:hover {
+    background-color: #45a049;
+}
+
+#login-container button:focus {
+    outline: none;
 }
 
 
