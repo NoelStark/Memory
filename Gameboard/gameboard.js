@@ -4,7 +4,7 @@ const cards = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'A', 'B', 'C', 'D', 'E', 
 // Håller reda på de kort som har vänds
 let flippedCards = [];
 let matchedCards = [];
-
+let isChecking = false;
 // blanda korten
 function shuffle(array) {
   return array.sort(() => 0.5 - Math.random());
@@ -39,6 +39,7 @@ function createBoard() {
 
 // vända kortet
 function flipCard() {
+  if(isChecking) return;
   const card = this;
   card.classList.add('flipped');
 
@@ -49,6 +50,7 @@ function flipCard() {
   flippedCards.push(card);
 
   if (flippedCards.length === 2) {
+    isChecking = true;
     checkMatch();
   }
 }
@@ -61,6 +63,7 @@ function checkMatch() {
     flippedCards = [];
     if (matchedCards.length === cards.length) {
       setTimeout(() => alert('You won!'), 500);
+      isChecking = false;
     }
   } else {
     setTimeout(() => {
@@ -69,8 +72,11 @@ function checkMatch() {
       card2.classList.remove('flipped');
       card2.querySelector('img').style.display = 'none';  // Döljer bilden igen
       flippedCards = [];
+      isChecking = false;
+
     }, 1000);
   }
+
 }
 
 // När sidan laddas, skapa spelbordet
