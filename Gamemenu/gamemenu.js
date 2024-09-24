@@ -48,6 +48,8 @@ exitBtn.addEventListener("click",() => {
   gameContainer.style.display = 'none';
   settingsMenuContainer.style.display = 'none';
   leaderboardMenuContainer.style.display = 'none';
+  document.getElementById('hamburger-menu').style.display = 'none';
+    document.getElementById('hamburger-icon').style.display = 'none';
 })
 
 
@@ -68,8 +70,8 @@ playBtn.addEventListener('click', () => {
 });
 */
 
-const validUsername = "player"
-const validPassword = "password"
+const validUsername = "hacker"
+const validPassword = "123"
 document.getElementById('loginButton').addEventListener('click', function() {
   
   
@@ -79,6 +81,8 @@ document.getElementById('loginButton').addEventListener('click', function() {
   
   if (username === validUsername && password === validPassword) {
     loginContainer.style.display = 'none';
+    document.getElementById('hamburger-menu').style.display = 'inline';
+    document.getElementById('hamburger-icon').style.display = 'inline';
     gameContainer.style.display = 'block';
   } else {
     document.getElementById('error').style.display = 'block';
