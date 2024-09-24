@@ -257,6 +257,18 @@ object-fit: cover;
 display: block;
 }
 
+#reset{
+    width: 150px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border-color: brown;
+    background-color: rgb(72, 43, 235);
+    font-size: 18px;
+    color: bisque;
+
+}
+
 /* Game Menu Container */
 #gameMenu-container {
     display: flex;

@@ -47,7 +47,7 @@ exitBtn.addEventListener("click",() => {
   loginContainer.style.display = 'block';
   gameContainer.style.display = 'none';
   settingsMenuContainer.style.display = 'none';
-  leaderboardBtn.style.display = 'none';
+  leaderboardMenuContainer.style.display = 'none';
 })
 
 
