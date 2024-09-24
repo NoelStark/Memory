@@ -1,3 +1,12 @@
+class Score{
+  constructor(score, name, time = "-", date = new Date().toLocaleDateString()){
+      this.score = score;
+      this.name = name;
+      this.time = time;
+      this.date = date;
+  }
+}
+
 /*Switching view*/
 
 // JavaScript to switch views between Game Menu and Settings Menu
@@ -60,21 +69,9 @@ function animate_Header(){
     }, 100);
 }
 
-
-/* Försök att lägga till event för knapptryckningen blir konflikt någonstans med namn tror jag gameMenu-playBtn
-const playBtn = document.getElementById('gameMenu-playBtn');
-playBtn.addEventListener('click', () => {
-    // Omdirigera till gameboard.html
-    window.location.href = "../gameboard/gameboard.html";
-
-});
-*/
-
 const validUsername = "hacker"
 const validPassword = "123"
 document.getElementById('loginButton').addEventListener('click', function() {
-  
-  
   
   const username = document.getElementById('username').value;
   const password = document.getElementById('password').value;
@@ -172,7 +169,7 @@ function flipCard() {
     checkMatch();
   }
 }
-
+let arr = [];
 // kontrollera om korten matchar
 function checkMatch() {
   const [card1, card2] = flippedCards;
@@ -181,6 +178,9 @@ function checkMatch() {
     flippedCards = [];
     if (matchedCards.length === cards.length) {
       setTimeout(() => alert('You won!'), 500);
+      let score = new Score(10, "Jöns", "2m 3s");
+      arr.push(score);
+      addToLeaderboard();
     }
     isChecking = false;
 
@@ -203,25 +203,6 @@ function checkMatch() {
 
 /* Leaderboard interactions*/
 
-//The code that saves leaderboard data and creates rows
-import scores from '../temp.js';
-let score = {score:20, name:"Jöns",time:"1m 32s",date:"2024-10-20"}
-let arr = [];
-arr.push(...scores);
-arr.push(score);
-/*
-var close = document.getElementsByClassName("closebtn");
-
-close[0].onclick = function(){
-    arr.push(score[0]);
-    this.textContent = arr[0].score + " " + arr[0].name + " " + arr[0].time + " " + arr[0].date;
-    }
-   
-let scores = [
-    {name: 'Jöns',date: '2024-03-10', score:'25', time:'3m 31s' },
-    {name: 'Jöns',date: '2024-03-10', score:'25', time:'3m 31s'},
-    {name: 'Jöns',date: '2024-03-10', score:'25', time:'3m 31s'}
-];*/
 
 let table = document.querySelector("table tbody");
 
@@ -251,15 +232,20 @@ function convert_toSeconds(time){
     return (min*60) + sec;
 }
 
-arr.sort((a,b) => {
-    //Check if the scores are the same or not
-    if(b.score !== a.score) 
-        return b.score - a.score;
-    //If the scores are the same, compare the times
-    let timeA = convert_toSeconds(a.time);
-    let timeB = convert_toSeconds(b.time);
-    return timeA -timeB;
-});
+function addToLeaderboard(){
+
+  arr.sort((a,b) => {
+      //Check if the scores are the same or not
+      if(b.score !== a.score) 
+          return b.score - a.score;
+      //If the scores are the same, compare the times
+      let timeA = convert_toSeconds(a.time);
+      let timeB = convert_toSeconds(b.time);
+      return timeA -timeB;
+  });
+
+  fill_leaderboard();
+}
 
 
 
