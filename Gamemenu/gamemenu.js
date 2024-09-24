@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
     });
 
-    resetBtn.addEventListener("click", () => {alert("Hello")})
+    resetBtn.addEventListener("click", () => {createBoard()})
     createBoard();
 });
 
@@ -117,13 +117,13 @@ document.addEventListener('DOMContentLoaded', () => {
 const cards = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
 
 // Håller reda på de kort som har vänds
+// blanda korten
+function shuffle(array) {
+    return array.sort(() => 0.5 - Math.random());
+}
 let flippedCards = [];
 let matchedCards = [];
 let isChecking = false;
-// blanda korten
-function shuffle(array) {
-  return array.sort(() => 0.5 - Math.random());
-}
 
 //  skapa spelbordet
 function createBoard() {
@@ -150,6 +150,11 @@ function createBoard() {
     // Lägg till kortet på spelbordet
     board.appendChild(cardElement);
   });
+  clearInterval(timer);
+  seconds = 0;
+  timer = setInterval( () => {
+    seconds++;
+  }, 1000)
 }
 
 // vända kortet
@@ -170,17 +175,23 @@ function flipCard() {
   }
 }
 let arr = [];
+let card_score = 0;
+let timer;
+let seconds;
 // kontrollera om korten matchar
 function checkMatch() {
   const [card1, card2] = flippedCards;
   if (card1.dataset.value === card2.dataset.value) {
+    card_score++;
     matchedCards.push(card1, card2);
     flippedCards = [];
     if (matchedCards.length === cards.length) {
-      setTimeout(() => alert('You won!'), 500);
-      let score = new Score(10, "Jöns", "2m 3s");
-      arr.push(score);
-      addToLeaderboard();
+        clearInterval(timer);
+        setTimeout(() => alert('You won!'), 500);
+        let time_played = convert_toMinutes(seconds);
+        let score = new Score(card_score, "Jöns", time_played);
+        arr.push(score);
+        addToLeaderboard();
     }
     isChecking = false;
 
@@ -197,8 +208,6 @@ function checkMatch() {
   }
 
 }
-
-// När sidan laddas, skapa spelbordet
 
 
 /* Leaderboard interactions*/
@@ -223,6 +232,13 @@ function fill_leaderboard(){
             row.classList.add('animated-Row');
         }, index * 100);
     });
+}
+
+//Function to take time and convert it into minutes
+function convert_toMinutes(time){
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    return `${minutes}m ${seconds < 10 ? '0' : ''}${seconds}s`; //
 }
 //Function to take time and convert it into seconds
 function convert_toSeconds(time){
