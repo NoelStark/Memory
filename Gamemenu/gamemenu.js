@@ -23,6 +23,8 @@ const leaderboardBtn = document.getElementById('gameMenu-leaderboardBtn')
 const exitBtn = document.getElementById('gameMenu-exitBtn');
 
 
+
+
 playBtn.addEventListener('click', () =>{
   gameContainer.style.display = 'block';
   leaderboardMenuContainer.style.display = 'none';
@@ -97,22 +99,7 @@ function login() {
   }
 }
 
-/*
-document.getElementById('loginButton').addEventListener('click', function() {
-  
-  const username = document.getElementById('username').value;
-  const password = document.getElementById('password').value;
-  
-  if (username === validUsername && password === validPassword) {
-    loginContainer.style.display = 'none';
-    document.getElementById('hamburger-menu').style.display = 'inline';
-    document.getElementById('hamburger-icon').style.display = 'inline';
-    gameContainer.style.display = 'block';
-  } else {
-    document.getElementById('error').style.display = 'block';
-  }
-  })
-  */
+
 /* Navbar interactions*/
 
 //Interaction to open and close Hamburger menu
@@ -134,10 +121,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
     });
-
-    resetBtn.addEventListener("click", () => {createBoard()})
-    createBoard();
+    
+    resetBtn.addEventListener("click", () => {
+      resetGameBoard();  // Anropa funktionen som återställer spelplanen
+    
+    });
+createBoard();
 });
+
+function resetGameBoard() {
+  const board = document.getElementById('game-board');
+  board.innerHTML = '';  // Töm spelplanen
+  flippedCards = [];
+  matchedCards = [];
+  createBoard();  // Skapa en ny spelplan
+}
 
 /* Game Functions*/
 
@@ -291,6 +289,11 @@ function addToLeaderboard(){
   fill_leaderboard();
 }
 
-
+/*
+resetButton.addEventListener('click', () => {
+  resetGameBoard();  // Återställ bara spelplanen
+  
+}); 
+*/
 
 
