@@ -134,6 +134,8 @@ function resetGameBoard() {
   board.innerHTML = '';  // Töm spelplanen
   flippedCards = [];
   matchedCards = [];
+  seconds = 0;
+  card_score = 0;
   createBoard();  // Skapa en ny spelplan
 }
 
@@ -150,9 +152,13 @@ function shuffle(array) {
 let flippedCards = [];
 let matchedCards = [];
 let isChecking = false;
-
+let arr = [];
+let card_score = 0;
+let timer;
+let seconds;
 //  skapa spelbordet
 function createBoard() {
+    
   const board = document.getElementById('game-board');
   const shuffledCards = shuffle(cards);
 
@@ -200,10 +206,7 @@ function flipCard() {
     checkMatch();
   }
 }
-let arr = [];
-let card_score = 0;
-let timer;
-let seconds;
+
 // kontrollera om korten matchar
 function checkMatch() {
   const [card1, card2] = flippedCards;
