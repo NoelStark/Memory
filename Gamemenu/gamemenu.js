@@ -20,7 +20,7 @@ const leaderboardMenuContainer = document.getElementById('leaderboard-container'
 const playBtn = document.getElementById('gameMenu-playBtn');
 const settingsBtn = document.getElementById('gameMenu-settingsBtn');
 const leaderboardBtn = document.getElementById('gameMenu-leaderboardBtn')
-const exitBtn = document.getElementById('gameMenu-exitBtn');
+const exitBtn = document.querySelectorAll('.gameMenu-exitBtn');
 
 
 
@@ -54,14 +54,18 @@ leaderboardBtn.addEventListener('click', () => {
 
 });
 
-exitBtn.addEventListener("click",() => {
-  loginContainer.style.display = 'block';
-  gameContainer.style.display = 'none';
-  settingsMenuContainer.style.display = 'none';
-  leaderboardMenuContainer.style.display = 'none';
-  document.getElementById('hamburger-menu').style.display = 'none';
-    document.getElementById('hamburger-icon').style.display = 'none';
+exitBtn.forEach(btn => {
+    btn.addEventListener("click",() => {
+        loginContainer.style.display = 'block';
+        gameContainer.style.display = 'none';
+        settingsMenuContainer.style.display = 'none';
+        leaderboardMenuContainer.style.display = 'none';
+        document.getElementById('hamburger-menu').style.display = 'none';
+          document.getElementById('hamburger-icon').style.display = 'none';
+      })
 })
+
+
 
 
 function animate_Header(){
