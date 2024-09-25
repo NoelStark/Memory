@@ -37,12 +37,15 @@ settingsBtn.addEventListener('click', () => {
     gameContainer.style.display = 'none';
     leaderboardMenuContainer.style.display = 'none';
     settingsMenuContainer.style.display = 'block';
+
+    settingsMenuContainer.classList.add('animated-settings');
 });
 
 // Event listener for the Leaderboard button to show the leaderboard view
 leaderboardBtn.addEventListener('click', () => {
     //gameMenuContainer.style.display = 'none';
     gameContainer.style.display = 'none';
+    settingsMenuContainer.classList.remove('animated-settings');
     settingsMenuContainer.style.display = 'none';
     leaderboardMenuContainer.style.display = 'block';
 

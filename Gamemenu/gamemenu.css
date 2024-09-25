@@ -330,6 +330,7 @@ display: block;
     width: 600px;
     color: white;
     align-items: center;
+    opacity: 0;
 }
 
 #settingsMenu-container #settings-buttons {
@@ -493,4 +494,9 @@ table td:nth-child(5) {
 .animated-headerRow{
     opacity:1;
     animation: fadeIn 2s forwards;
+}
+
+.animated-settings{
+    opacity:1;
+    animation: fadeIn 0.5s forwards;
 }
