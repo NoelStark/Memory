@@ -72,19 +72,29 @@ function animate_Header(){
 const validUsername = "hacker"
 const validPassword = "123"
 
-document.getElementById('loginButton').addEventListener('click', function()){
+document.getElementById('loginButton').addEventListener('click', function() {
   login();
-}
+});
 
 document.getElementById('loginForm').addEventListener('keydown', function(event) {
 if (event.key === 'Enter') {
   event.preventDefault();
   login();
 }
-}
+});
 
 function login() {
-  
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+
+  if (username === validUsername && password === validPassword) {
+    loginContainer.style.display = 'none';
+    document.getElementById('hamburger-menu').style.display = 'inline';
+    document.getElementById('hamburger-icon').style.display = 'inline';
+    gameContainer.style.display = 'block';
+  } else {
+    document.getElementById('error').style.display = 'block';
+  }
 }
 
 /*
