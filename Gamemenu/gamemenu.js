@@ -91,8 +91,10 @@ if (event.key === 'Enter') {
   login();
 }
 });
-
 function login() {
+//createUser();
+getUser();
+
   const username = document.getElementById('username').value;
   const password = document.getElementById('password').value;
 
@@ -105,6 +107,72 @@ function login() {
     document.getElementById('error').style.display = 'block';
   }
 }
+
+function createUser(){
+  const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+  const targetUrl = 'http://www.kihlman.eu/formcheck.php';
+
+  const formData = new URLSearchParams();
+  formData.append('username', 'newuser');
+  formData.append('password', 'password123');
+
+  fetch(proxyUrl + targetUrl,{
+    method: 'POST',
+    headers:{
+      'Content-Type':'application/x-www-form-urlencoded'
+    },
+    body:formData
+  })
+  .then(response => {
+    if(!response.ok){
+      throw new Error('Network status' + response.status)
+    }
+      
+    return response.text();
+  })
+  .then(data =>{
+    console.log(data)
+  })
+  .catch(error => console.log(error))
+}
+
+function getUser(){
+  const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+  const targetUrl = 'http://www.kihlman.eu/formcheck.php';
+
+  const formData = new URLSearchParams();
+  formData.append('username', 'newuser');
+  formData.append('password', 'password123');
+
+  fetch(proxyUrl + targetUrl + '?' + formData.toString(),{
+    method: 'GET',
+    headers:{
+      'Content-Type':'application/x-www-form-urlencoded'
+    }
+  })
+  .then(response => {
+    if(!response.ok){
+      throw new Error('Network status' + response.status)
+    }
+    return response.text();
+  })
+  .then(data =>{
+    extract_data(data)
+  })
+  .catch(error => console.log(error))
+}
+
+function extract_data(data){
+  var doc = new DOMParser().parseFromString(data, 'text/html');
+  console.log(data);
+  console.log(doc);
+  var els = doc.querySelectorAll('td');
+  els.forEach((el) =>{
+    console.log(el.textContent);
+  })
+}
+
+
 
 
 /* Navbar interactions*/
