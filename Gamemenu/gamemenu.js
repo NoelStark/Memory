@@ -221,6 +221,8 @@ function flipCard() {
 function checkMatch() {
   const [card1, card2] = flippedCards;
   if (card1.dataset.value === card2.dataset.value) {
+    card1.classList.add('match');
+    card2.classList.add('match');
     card_score++;
     matchedCards.push(card1, card2);
     flippedCards = [];
@@ -239,6 +241,12 @@ function checkMatch() {
         addToLeaderboard();
     }
     isChecking = false;
+    setTimeout(() => {
+        card1.classList.remove('match');
+        card2.classList.remove('match');
+    }, 2000);
+
+
 
   } else {
     setTimeout(() => {

@@ -245,6 +245,10 @@ pointer-events: none;
 background-image: none;
 }
 
+.card.flipped.match{
+    border: 3px solid rgb(2, 180, 2);
+}
+
 .card img {
 display: none;
 width: 100%;   
