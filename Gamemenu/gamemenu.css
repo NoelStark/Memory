@@ -400,6 +400,26 @@ display: block;
     0 2px 50px 10px rgba(98, 98, 98, 0.4);
 }
 
+#settingsMenu-container #settings-timerBtn.active{
+    background: radial-gradient(circle at center,#BEFEAF, #22E281, #0A614D 70%);
+    border: 5px solid rgb(54, 122, 57, 1);
+    box-shadow:
+    inset -4px -4px 8px rgb(32, 246, 89),
+    inset 1px 4px 8px rgb(25, 186, 0),
+    1px 15px 20px 10px rgba(0, 0, 0, 0.2),
+    0 2px 50px 10px rgba(98, 98, 98, 0.4);
+}
+
+#settingsMenu-container #settings-timerBtn.active:hover{
+    background: radial-gradient(circle at center,#BEFEAF, #22E281, #0A614D 70%);
+    border: 5px solid rgb(20, 85, 23);
+    box-shadow:
+    inset -4px -4px 8px rgb(8, 167, 50),
+    inset 1px 4px 8px rgb(25, 186, 0),
+    1px 15px 20px 10px rgba(0, 0, 0, 0.2),
+    0 2px 50px 10px rgba(98, 98, 98, 0.4);
+}
+
 #settingsMenu-container #settings-timerBtn:hover {
     background: radial-gradient(ellipse 250px 130px at center,#ff534a, #b73d49, #e11a45 70%);
     transition: background-color 0.3s ease;

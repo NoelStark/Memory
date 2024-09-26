@@ -163,6 +163,7 @@ let arr = [];
 let card_score = 0;
 let timer;
 let seconds;
+let timer_on = false;
 //  skapa spelbordet
 function createBoard() {
     
@@ -191,9 +192,11 @@ function createBoard() {
   });
   clearInterval(timer);
   seconds = 0;
-  timer = setInterval( () => {
-    seconds++;
-  }, 1000)
+  if(timer_on == true){
+    timer = setInterval( () => {
+        seconds++;
+    }, 1000)
+  }
 }
 
 // vända kortet
@@ -224,7 +227,13 @@ function checkMatch() {
     if (matchedCards.length === cards.length) {
         clearInterval(timer);
         setTimeout(() => alert('You won!'), 500);
-        let time_played = convert_toMinutes(seconds);
+        let time_played;
+        if(seconds == 0){
+            time_played = '-';
+        }
+        else{
+          time_played = convert_toMinutes(seconds);
+        }
         let score = new Score(card_score, "Jöns", time_played);
         arr.push(score);
         addToLeaderboard();
@@ -287,13 +296,15 @@ function convert_toSeconds(time){
 function addToLeaderboard(){
 
   arr.sort((a,b) => {
-      //Check if the scores are the same or not
-      if(b.score !== a.score) 
-          return b.score - a.score;
-      //If the scores are the same, compare the times
-      let timeA = convert_toSeconds(a.time);
-      let timeB = convert_toSeconds(b.time);
-      return timeA -timeB;
+    //Check if the scores are the same or not
+    let timeA, timeB;
+    if(b.score !== a.score) 
+        return b.score - a.score;
+    //If the scores are the same, compare the times
+    
+    timeA = a.time === '-' ? Infinity : convert_toSeconds(a.time);
+    timeB = b.time === '-' ? Infinity : convert_toSeconds(b.time);
+    return timeA -timeB;
   });
 
   fill_leaderboard();
@@ -306,4 +317,21 @@ resetButton.addEventListener('click', () => {
 }); 
 */
 
+
+/* Settings Section Interactions*/
+
+const timerBtn = document.getElementById('settings-timerBtn');
+
+timerBtn.addEventListener("click", () => {
+    if(timerBtn.classList.contains('active')){
+        timerBtn.classList.remove('active');
+        timerBtn.textContent = 'Off';
+        timer_on = false;
+    }
+    else{
+        timerBtn.classList.add('active');
+        timerBtn.textContent = 'On';
+        timer_on = true;
+    }
+})
 
