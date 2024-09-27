@@ -80,6 +80,7 @@ function animate_Header(){
 
 const validUsername = "hacker"
 const validPassword = "123"
+let username;
 
 document.getElementById('loginButton').addEventListener('click', function() {
   login();
@@ -91,14 +92,13 @@ if (event.key === 'Enter') {
   login();
 }
 });
-function login() {
+async function login() {
 //createUser();
-getUser();
 
-  const username = document.getElementById('username').value;
+  username = document.getElementById('username').value;
   const password = document.getElementById('password').value;
-
-  if (username === validUsername && password === validPassword) {
+  let credentials = await getUser(username, password);
+  if (username === validUsername && password === validPassword || username === credentials['username'] && password === credentials['password']) {
     loginContainer.style.display = 'none';
     document.getElementById('hamburger-menu').style.display = 'inline';
     document.getElementById('hamburger-icon').style.display = 'inline';
@@ -136,40 +136,50 @@ function createUser(){
   .catch(error => console.log(error))
 }
 
-function getUser(){
+async function getUser(username, password){
   const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
   const targetUrl = 'http://www.kihlman.eu/formcheck.php';
 
   const formData = new URLSearchParams();
-  formData.append('username', 'newuser');
-  formData.append('password', 'password123');
+  formData.append('username', username);
+  formData.append('password', password);
+  try{
 
-  fetch(proxyUrl + targetUrl + '?' + formData.toString(),{
-    method: 'GET',
-    headers:{
-      'Content-Type':'application/x-www-form-urlencoded'
-    }
-  })
-  .then(response => {
+    const response = await fetch(proxyUrl + targetUrl + '?' + formData.toString(),{
+      method: 'GET',
+      headers:{
+        'Content-Type':'application/x-www-form-urlencoded'
+      }
+    });
+
     if(!response.ok){
       throw new Error('Network status' + response.status)
     }
-    return response.text();
-  })
-  .then(data =>{
-    extract_data(data)
-  })
-  .catch(error => console.log(error))
+    const data = await response.text();
+    
+    return extract_data(data)
+  }
+  catch(error){
+    console.log(error);
+    return null;
+  }
 }
 
 function extract_data(data){
   var doc = new DOMParser().parseFromString(data, 'text/html');
   console.log(data);
   console.log(doc);
-  var els = doc.querySelectorAll('td');
+  var els = doc.querySelectorAll('tr td:nth-child(2)');
+  let username = els[0].textContent;
+  let password = els[1].textContent;
+  //console.log("Username:" + username);
+  //console.log("Password:" + password);
+  /*
   els.forEach((el) =>{
     console.log(el.textContent);
   })
+    */ 
+   return { username, password}
 }
 
 
@@ -304,7 +314,7 @@ function checkMatch() {
         else{
           time_played = convert_toMinutes(seconds);
         }
-        let score = new Score(card_score, "Jöns", time_played);
+        let score = new Score(card_score, username, time_played);
         arr.push(score);
         addToLeaderboard();
     }
