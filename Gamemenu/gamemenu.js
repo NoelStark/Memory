@@ -71,13 +71,6 @@ exitBtn.forEach(btn => {
 
 
 
-function animate_Header(){
-    const tableHeader = document.querySelector("table thead");
-    setTimeout(() => {
-        tableHeader.classList.add('animated-headerRow');
-    }, 100);
-}
-
 const validUsername = "hacker"
 const validPassword = "123"
 let username;
@@ -102,7 +95,7 @@ async function login() {
     loginContainer.style.display = 'none';
     document.getElementById('hamburger-menu').style.display = 'inline';
     document.getElementById('hamburger-icon').style.display = 'inline';
-    gameContainer.style.display = 'block';
+    gameContainer.style.display = 'flex';
   } else {
     document.getElementById('error').style.display = 'block';
   }
@@ -214,17 +207,29 @@ document.addEventListener('DOMContentLoaded', () => {
 createBoard();
 });
 
+/* Game Functions*/
+
+
 function resetGameBoard() {
   const board = document.getElementById('game-board');
-  board.innerHTML = '';  // Töm spelplanen
+  board.innerHTML = '';  // Clear the game board
   flippedCards = [];
   matchedCards = [];
-  seconds = 0;
   card_score = 0;
-  createBoard();  // Skapa en ny spelplan
+  player1Time = 0;
+  player2Time = 0;
+  player1Score = 0;
+  player2Score = 0;
+  document.getElementById('player1-timer').textContent = "0m 00s";
+  document.getElementById('player2-timer').textContent = "0m 00s";
+  document.getElementById('player1-score').textContent = player1Score;
+  document.getElementById('player2-score').textContent = player2Score;
+  stopPlayerTimer(player1);
+  stopPlayerTimer(player2);
+  startPlayerTimer(player1);
+  createBoard();
 }
 
-/* Game Functions*/
 
 // Korten som ska visas på spelbordet
 const cards = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
@@ -242,12 +247,62 @@ let card_score = 0;
 let timer;
 let seconds;
 let timer_on = false;
+const player1 = document.getElementById('player1');
+const player2 = document.getElementById('player2');
+let current_player = player1;
+let player1Score = 0;
+let player2Score = 0;
+let player1Time = 0;
+let player2Time = 0;
+let player1Timer, player2Timer;
+
+function switchPlayer() {
+  if (current_player === player1) {
+    player1.classList.remove("active");
+    player2.classList.add("active");
+    clearInterval(player1Timer); // Stop Player 1's timer
+    startPlayerTimer(player2); // Start Player 2's timer
+    current_player = player2;
+  } else {
+    player1.classList.add("active");
+    player2.classList.remove("active");
+    clearInterval(player2Timer); // Stop Player 2's timer
+    startPlayerTimer(player1); // Start Player 1's timer
+    current_player = player1;
+  }
+}
+
+
+function startPlayerTimer(player) {
+  if (player === player1) {
+    player1Timer = setInterval(() => {
+      player1Time++;
+      document.getElementById('player1-timer').textContent = convert_toMinutes(player1Time);
+      console.log(document.getElementById('player1-timer').textContent)
+    }, 1000);
+  } else {
+    player2Timer = setInterval(() => {
+      player2Time++;
+      document.getElementById('player2-timer').textContent = convert_toMinutes(player2Time);
+      console.log(document.getElementById('player2-timer').textContent)
+    }, 1000);
+  }
+}
+
+function stopPlayerTimer(player) {
+  if (player === player1) {
+    clearInterval(player1Timer);
+  } else {
+    clearInterval(player2Timer);
+  }
+}
+
+
 //  skapa spelbordet
 function createBoard() {
-    
+  player1.classList.add("active");
   const board = document.getElementById('game-board');
   const shuffledCards = shuffle(cards);
-
   // Skapa och lägg till korten dynamiskt
   shuffledCards.forEach(cardValue => {
     const cardElement = document.createElement('div');
@@ -268,24 +323,25 @@ function createBoard() {
     // Lägg till kortet på spelbordet
     board.appendChild(cardElement);
   });
-  clearInterval(timer);
-  seconds = 0;
-  if(timer_on == true){
-    timer = setInterval( () => {
-        seconds++;
-    }, 1000)
-  }
+
+  clearInterval(player1Timer);
+  clearInterval(player2Timer);
+  player1Time = 0;
+  player2Time = 0;
+  player1Score = 0;
+  player2Score = 0;
+  
 }
 
 // vända kortet
 function flipCard() {
-  if(isChecking) return;
+
+  if (isChecking) return;
+
   const card = this;
   card.classList.add('flipped');
-
-  // Visa framsidan (bilden) när kortet vänds
   const frontImage = card.querySelector('img');
-  frontImage.style.display = 'block';  // Visa bilden
+  frontImage.style.display = 'block';
 
   flippedCards.push(card);
 
@@ -298,46 +354,49 @@ function flipCard() {
 // kontrollera om korten matchar
 function checkMatch() {
   const [card1, card2] = flippedCards;
+
   if (card1.dataset.value === card2.dataset.value) {
     card1.classList.add('match');
     card2.classList.add('match');
     card_score++;
     matchedCards.push(card1, card2);
-    flippedCards = [];
-    if (matchedCards.length === cards.length) {
-        clearInterval(timer);
-        setTimeout(() => alert('You won!'), 500);
-        let time_played;
-        if(seconds == 0){
-            time_played = '-';
-        }
-        else{
-          time_played = convert_toMinutes(seconds);
-        }
-        let score = new Score(card_score, username, time_played);
-        arr.push(score);
-        addToLeaderboard();
+
+    if (current_player === player1) {
+      player1Score++;
+      document.getElementById('player1-score').textContent = player1Score;
+    } else {
+      player2Score++;
+      document.getElementById('player2-score').textContent = player2Score;
     }
-    isChecking = false;
     setTimeout(() => {
-        card1.classList.remove('match');
-        card2.classList.remove('match');
-    }, 2000);
+      card1.classList.remove('match');
+      card2.classList.remove('match');
+  }, 2000);
+    flippedCards = [];
+    isChecking = false;
 
+    if (matchedCards.length === 16) {
+      clearInterval(player1Timer);
+      clearInterval(player2Timer);
+      setTimeout(() => alert('Game Over!'), 500);
 
-
+      let score1 = new Score(player1Score, player1.textContent, player1Time);
+      let score2 = new Score(player2Score, player2.textContent, player2Time);
+      arr.push(score1);
+      arr.push(score2);
+      addToLeaderboard();
+    }
   } else {
     setTimeout(() => {
       card1.classList.remove('flipped');
-      card1.querySelector('img').style.display = 'none';  // Döljer bilden igen
       card2.classList.remove('flipped');
-      card2.querySelector('img').style.display = 'none';  // Döljer bilden igen
+      card1.querySelector('img').style.display = 'none';
+      card2.querySelector('img').style.display = 'none';
       flippedCards = [];
       isChecking = false;
-
+      switchPlayer(); // Switch the player after a wrong match
     }, 1000);
   }
-
 }
 
 
@@ -345,7 +404,6 @@ function checkMatch() {
 
 
 let table = document.querySelector("table tbody");
-
 
 //Creates the rows and fills with data
 function fill_leaderboard(){
@@ -355,7 +413,7 @@ function fill_leaderboard(){
         <td>${index + 1}</td>
         <td>${score.name}</td>
         <td>${score.date}</td>
-        <td>${score.time}</td>
+        <td>${convert_toMinutes(score.time)}</td>
         <td>${score.score}</td>`;
 
         table.appendChild(row);
@@ -396,12 +454,13 @@ function addToLeaderboard(){
   fill_leaderboard();
 }
 
-/*
-resetButton.addEventListener('click', () => {
-  resetGameBoard();  // Återställ bara spelplanen
-  
-}); 
-*/
+
+function animate_Header(){
+  const tableHeader = document.querySelector("table thead");
+  setTimeout(() => {
+      tableHeader.classList.add('animated-headerRow');
+  }, 100);
+}
 
 
 /* Settings Section Interactions*/

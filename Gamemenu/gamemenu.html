@@ -88,30 +88,24 @@
     <!-- Game Section-->
     <div id="game-container" style="display: none;">
       <button id="reset">Reset</button>
-      <div id="game-board" class="board">
-        
+      <div id="game-area"> <!-- New wrapper for game and players -->
+        <div id="game-board" class="board"></div>
+        <div id="players">
+            <p id="player1">Player 1</p>
+            <p>Score: <span id="player1-score">0</span></p>
+            <p>Time: <span id="player1-timer">0m 00s</span></p>
+            <br>
+            <p id="player2">Player 2</p>
+            <p>Score: <span id="player2-score">0</span></p>
+            <p>Time: <span id="player2-timer">0m 00s</span></p>
+        </div>
       </div>
     </div>
 
-    <!-- Game Menu Section -->  
-    <!--
-    <div
-     id="gameMenu-container" 
-     class="menu-container">
-      <div class="gameMenu-buttons">
-        <button id="gameMenu-playBtn" class="playBtn">Play</button>
-        <button id="gameMenu-leaderBtn">Leaderboard</button>
-        <button id="gameMenu-settingsBtn" class="settingsBtn">Settings</button>
-        <button id="gameMenu-exitBtn" class="exitBtn">Exit</button>
-      </div>
-    </div>
-  -->
     <!-- Settings Menu Section (Initially Hidden) -->
     <div
       id="settingsMenu-container"
-      class="settings-container"
-      
-    >
+      class="settings-container" >
       <h1>Settings</h1>
       <h2>Game Difficulty</h2>
       <div id="settings-buttons">
