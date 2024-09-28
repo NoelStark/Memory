@@ -26,7 +26,7 @@ const exitBtn = document.querySelectorAll('.gameMenu-exitBtn');
 
 
 playBtn.addEventListener('click', () =>{
-  gameContainer.style.display = 'block';
+  gameContainer.style.display = 'flex';
   leaderboardMenuContainer.style.display = 'none';
   settingsMenuContainer.style.display = 'none';
 });
@@ -266,6 +266,7 @@ let player2Score = 0;
 let player1Time = 0;
 let player2Time = 0;
 let player1Timer, player2Timer;
+let isTimerStarted = false;
 
 function switchPlayer() {
   if (current_player === player1) {
@@ -285,18 +286,20 @@ function switchPlayer() {
 
 
 function startPlayerTimer(player) {
-  if (player === player1) {
-    player1Timer = setInterval(() => {
-      player1Time++;
-      document.getElementById('player1-timer').textContent = convert_toMinutes(player1Time);
-      console.log(document.getElementById('player1-timer').textContent)
-    }, 1000);
-  } else {
-    player2Timer = setInterval(() => {
-      player2Time++;
-      document.getElementById('player2-timer').textContent = convert_toMinutes(player2Time);
-      console.log(document.getElementById('player2-timer').textContent)
-    }, 1000);
+  if(timer_on){
+    if (player === player1) {
+      player1Timer = setInterval(() => {
+        player1Time++;
+        document.getElementById('player1-timer').textContent = convert_toMinutes(player1Time);
+        console.log(document.getElementById('player1-timer').textContent)
+      }, 1000);
+    } else {
+      player2Timer = setInterval(() => {
+        player2Time++;
+        document.getElementById('player2-timer').textContent = convert_toMinutes(player2Time);
+        console.log(document.getElementById('player2-timer').textContent)
+      }, 1000);
+    }
   }
 }
 
@@ -348,6 +351,11 @@ function createBoard() {
 function flipCard() {
 
   if (isChecking) return;
+
+  if(timer_on && !isTimerStarted){
+    startPlayerTimer(player1);
+    isTimerStarted = true;
+  }
 
   const card = this;
   card.classList.add('flipped');
@@ -438,6 +446,7 @@ function fill_leaderboard(){
 function convert_toMinutes(time){
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
+    if(time == 0) return '-';
     return `${minutes}m ${seconds < 10 ? '0' : ''}${seconds}s`; //
 }
 //Function to take time and convert it into seconds
