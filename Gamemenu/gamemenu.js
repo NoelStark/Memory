@@ -85,6 +85,17 @@ if (event.key === 'Enter') {
   login();
 }
 });
+
+document.getElementById('editBtn').addEventListener('click', () => {
+  let player1NewName = prompt("New name for Player 1: ")
+  if(player1NewName){
+    document.getElementById('player1').textContent = player1NewName;
+  }
+  let player2NewName = prompt("New name for Player 2: ");
+  if(player2NewName){
+    document.getElementById('player2').textContent = player2NewName;
+  }
+});
 async function login() {
 //createUser();
 

@@ -267,6 +267,10 @@ html, body {
     color: white;
 }
 
+#editBtn{
+    position: absolute;
+    margin-left: 150px;
+}
 
 .board{
 display: grid;
