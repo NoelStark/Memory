@@ -280,8 +280,8 @@ margin-top: 0;
 }
 
 .card {
-width:125px;
-height:125px;
+width:150px;
+height:150px;
 background-color: lightblue;
 display: flex;
 align-items: center;
@@ -294,8 +294,8 @@ background-position: center;
 }
 
 .card.flipped {
-width:125px;
-height:125px;
+width:150px;
+height:150px;
 background-color: white;
 pointer-events: none;
 background-image: none;
@@ -322,8 +322,8 @@ display: block;
     padding: 10px 20px;
     margin-bottom: 20px;
     border-radius: 5px;
-    border-color: brown;
-    background-color: rgb(72, 43, 235);
+    border-color: rgb(69, 69, 69);
+    background-color: rgb(38, 45, 135);
     font-size: 18px;
     color: bisque;
 }
