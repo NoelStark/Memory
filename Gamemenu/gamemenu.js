@@ -228,7 +228,13 @@ function resetGameBoard() {
   document.getElementById('player2-score').textContent = player2Score;
   stopPlayerTimer(player1);
   stopPlayerTimer(player2);
-  startPlayerTimer(player1);
+  isTimerStarted = false;
+  
+  // Reset player indicator and timers
+  player1.classList.add("active");
+  player2.classList.remove("active");
+  current_player = player1;
+
   createBoard();
 }
 
@@ -246,7 +252,6 @@ let matchedCards = [];
 let isChecking = false;
 let arr = [];
 let card_score = 0;
-let timer;
 let seconds;
 let timer_on = false;
 const player1 = document.getElementById('player1');
@@ -279,11 +284,13 @@ function switchPlayer() {
 function startPlayerTimer(player) {
   if(timer_on){
     if (player === player1) {
+      stopPlayerTimer(player1);
       player1Timer = setInterval(() => {
         player1Time++;
         document.getElementById('player1-timer').textContent = convert_toMinutes(player1Time);
       }, 1000);
     } else {
+      clearInterval(player2Timer);
       player2Timer = setInterval(() => {
         player2Time++;
         document.getElementById('player2-timer').textContent = convert_toMinutes(player2Time);
@@ -327,8 +334,8 @@ function createBoard() {
     board.appendChild(cardElement);
   });
 
-  clearInterval(player1Timer);
-  clearInterval(player2Timer);
+  stopPlayerTimer(player1Timer);
+  stopPlayerTimer(player2Timer);
   player1Time = 0;
   player2Time = 0;
   player1Score = 0;
@@ -384,8 +391,8 @@ function checkMatch() {
     isChecking = false;
 
     if (matchedCards.length === 16) {
-      clearInterval(player1Timer);
-      clearInterval(player2Timer);
+      stopPlayerTimer(player1);
+      stopPlayerTimer(player2);
       setTimeout(() => alert('Game Over!'), 500);
 
       let score1 = new Score(player1Score, player1.textContent, player1Time);
@@ -447,11 +454,8 @@ function addToLeaderboard(){
         return b.score - a.score;
     //If the scores are the same, compare the times
     
-    let timeA = a.time === '-' ? Infinity : a.time;
-    let timeB = b.time === '-' ? Infinity : b.time;
-    if(timeA === Infinity && timeB === Infinity){
-      return 0;
-    }
+    let timeA = a.time === '-' ? 1000 : a.time;
+    let timeB = b.time === '-' ? 1000 : b.time;
     return timeA -timeB;
   });
 
