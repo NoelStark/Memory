@@ -451,23 +451,25 @@ function convert_toMinutes(time){
 }
 //Function to take time and convert it into seconds
 function convert_toSeconds(time){
-    let [minutes, seconds] = time.split(' ');
-    let min = parseInt(minutes.replace('m', ''), 10);
-    let sec = parseInt(seconds.replace('s', ''), 10);
-    return (min*60) + sec;
+    const timeParts = time.split('m');
+    const minutes = parseInt(timeParts[0].trim(),10);
+    const seconds = parseInt(timeParts[1].replace('s','').trim(),10);
+    return (minutes*60) + seconds;
 }
 
 function addToLeaderboard(){
 
   arr.sort((a,b) => {
     //Check if the scores are the same or not
-    let timeA, timeB;
     if(b.score !== a.score) 
         return b.score - a.score;
     //If the scores are the same, compare the times
     
-    timeA = a.time === '-' ? Infinity : convert_toSeconds(a.time);
-    timeB = b.time === '-' ? Infinity : convert_toSeconds(b.time);
+    let timeA = a.time === '-' ? Infinity : convert_toSeconds(a.time);
+    let timeB = b.time === '-' ? Infinity : convert_toSeconds(b.time);
+    if(timeA === Infinity && timeB === Infinity){
+      return 0;
+    }
     return timeA -timeB;
   });
 
