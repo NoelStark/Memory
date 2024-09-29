@@ -400,7 +400,7 @@ function checkMatch() {
       let score2 = new Score(player2Score, player2.textContent, player2Time);
       arr.push(score1);
       arr.push(score2);
-      addToLeaderboard();
+      fill_leaderboard();
     }
   } else {
     setTimeout(() => {
@@ -459,14 +459,6 @@ function sort_array(){
     let timeB = b.time === '-' ? 1000 : b.time;
     return timeA -timeB;
   });
-}
-
-function addToLeaderboard(){
-
-
-  
-
-  fill_leaderboard();
 }
 
 function fill_randomData(){
