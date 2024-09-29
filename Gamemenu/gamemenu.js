@@ -50,7 +50,6 @@ leaderboardBtn.addEventListener('click', () => {
     leaderboardMenuContainer.style.display = 'block';
 
     table.innerHTML = '';
-
     animate_Header();
     setTimeout(1000);
     fill_leaderboard();
@@ -74,6 +73,8 @@ exitBtn.forEach(btn => {
 const validUsername = "hacker"
 const validPassword = "123"
 let username;
+
+document.addEventListener('DOMContentLoaded', () => fill_randomData());
 
 document.getElementById('loginButton').addEventListener('click', function() {
   login();
@@ -420,9 +421,18 @@ function checkMatch() {
 
 let table = document.querySelector("table tbody");
 
+//Function to take time and convert it into minutes
+function convert_toMinutes(time){
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    if(time == 0) return '-';
+    return `${minutes}m ${seconds < 10 ? '0' : ''}${seconds}s`; //
+}
 //Creates the rows and fills with data
 function fill_leaderboard(){
-    arr.forEach((score, index) => {
+  sort_array();
+  const topScores = arr.slice(0, 6);
+  topScores.forEach((score, index) => {
         let row = document.createElement("tr");
         row.innerHTML = `
         <td>${index + 1}</td>
@@ -438,16 +448,7 @@ function fill_leaderboard(){
     });
 }
 
-//Function to take time and convert it into minutes
-function convert_toMinutes(time){
-    const minutes = Math.floor(time / 60);
-    const seconds = time % 60;
-    if(time == 0) return '-';
-    return `${minutes}m ${seconds < 10 ? '0' : ''}${seconds}s`; //
-}
-
-function addToLeaderboard(){
-
+function sort_array(){
   arr.sort((a,b) => {
     //Check if the scores are the same or not
     if(b.score !== a.score) 
@@ -458,8 +459,25 @@ function addToLeaderboard(){
     let timeB = b.time === '-' ? 1000 : b.time;
     return timeA -timeB;
   });
+}
+
+function addToLeaderboard(){
+
+
+  
 
   fill_leaderboard();
+}
+
+function fill_randomData(){
+  const random_scores = [
+    new Score(5, "Player", 25),
+    new Score(4, "Player", 18),
+    new Score(2, "Player", 15),
+    new Score(3, "Player", 35),
+  ]
+
+  random_scores.forEach((a) => arr.push(a));
 }
 
 
