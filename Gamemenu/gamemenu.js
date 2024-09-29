@@ -171,18 +171,9 @@ async function getUser(username, password){
 
 function extract_data(data){
   var doc = new DOMParser().parseFromString(data, 'text/html');
-  console.log(data);
-  console.log(doc);
   var els = doc.querySelectorAll('tr td:nth-child(2)');
   let username = els[0].textContent;
   let password = els[1].textContent;
-  //console.log("Username:" + username);
-  //console.log("Password:" + password);
-  /*
-  els.forEach((el) =>{
-    console.log(el.textContent);
-  })
-    */ 
    return { username, password}
 }
 
@@ -291,13 +282,11 @@ function startPlayerTimer(player) {
       player1Timer = setInterval(() => {
         player1Time++;
         document.getElementById('player1-timer').textContent = convert_toMinutes(player1Time);
-        console.log(document.getElementById('player1-timer').textContent)
       }, 1000);
     } else {
       player2Timer = setInterval(() => {
         player2Time++;
         document.getElementById('player2-timer').textContent = convert_toMinutes(player2Time);
-        console.log(document.getElementById('player2-timer').textContent)
       }, 1000);
     }
   }
@@ -449,13 +438,6 @@ function convert_toMinutes(time){
     if(time == 0) return '-';
     return `${minutes}m ${seconds < 10 ? '0' : ''}${seconds}s`; //
 }
-//Function to take time and convert it into seconds
-function convert_toSeconds(time){
-    const timeParts = time.split('m');
-    const minutes = parseInt(timeParts[0].trim(),10);
-    const seconds = parseInt(timeParts[1].replace('s','').trim(),10);
-    return (minutes*60) + seconds;
-}
 
 function addToLeaderboard(){
 
@@ -465,8 +447,8 @@ function addToLeaderboard(){
         return b.score - a.score;
     //If the scores are the same, compare the times
     
-    let timeA = a.time === '-' ? Infinity : convert_toSeconds(a.time);
-    let timeB = b.time === '-' ? Infinity : convert_toSeconds(b.time);
+    let timeA = a.time === '-' ? Infinity : a.time;
+    let timeB = b.time === '-' ? Infinity : b.time;
     if(timeA === Infinity && timeB === Infinity){
       return 0;
     }
