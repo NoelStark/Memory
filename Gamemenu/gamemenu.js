@@ -26,7 +26,7 @@ const exitBtn = document.querySelectorAll('.gameMenu-exitBtn');
 
 
 playBtn.addEventListener('click', () =>{
-  gameContainer.style.display = 'block';
+  gameContainer.style.display = 'flex';
   leaderboardMenuContainer.style.display = 'none';
   settingsMenuContainer.style.display = 'none';
 });
@@ -50,7 +50,6 @@ leaderboardBtn.addEventListener('click', () => {
     leaderboardMenuContainer.style.display = 'block';
 
     table.innerHTML = '';
-
     animate_Header();
     setTimeout(1000);
     fill_leaderboard();
@@ -75,6 +74,8 @@ const validUsername = "hacker"
 const validPassword = "123"
 let username;
 
+document.addEventListener('DOMContentLoaded', () => fill_randomData());
+
 document.getElementById('loginButton').addEventListener('click', function() {
   login();
 });
@@ -84,6 +85,17 @@ if (event.key === 'Enter') {
   event.preventDefault();
   login();
 }
+});
+
+document.getElementById('editBtn').addEventListener('click', () => {
+  let player1NewName = prompt("New name for Player 1: ")
+  if(player1NewName){
+    document.getElementById('player1').textContent = player1NewName;
+  }
+  let player2NewName = prompt("New name for Player 2: ");
+  if(player2NewName){
+    document.getElementById('player2').textContent = player2NewName;
+  }
 });
 async function login() {
 //createUser();
@@ -160,18 +172,9 @@ async function getUser(username, password){
 
 function extract_data(data){
   var doc = new DOMParser().parseFromString(data, 'text/html');
-  console.log(data);
-  console.log(doc);
   var els = doc.querySelectorAll('tr td:nth-child(2)');
   let username = els[0].textContent;
   let password = els[1].textContent;
-  //console.log("Username:" + username);
-  //console.log("Password:" + password);
-  /*
-  els.forEach((el) =>{
-    console.log(el.textContent);
-  })
-    */ 
    return { username, password}
 }
 
@@ -226,7 +229,13 @@ function resetGameBoard() {
   document.getElementById('player2-score').textContent = player2Score;
   stopPlayerTimer(player1);
   stopPlayerTimer(player2);
-  startPlayerTimer(player1);
+  isTimerStarted = false;
+  
+  // Reset player indicator and timers
+  player1.classList.add("active");
+  player2.classList.remove("active");
+  current_player = player1;
+
   createBoard();
 }
 
@@ -244,7 +253,6 @@ let matchedCards = [];
 let isChecking = false;
 let arr = [];
 let card_score = 0;
-let timer;
 let seconds;
 let timer_on = false;
 const player1 = document.getElementById('player1');
@@ -255,6 +263,7 @@ let player2Score = 0;
 let player1Time = 0;
 let player2Time = 0;
 let player1Timer, player2Timer;
+let isTimerStarted = false;
 
 function switchPlayer() {
   if (current_player === player1) {
@@ -274,18 +283,20 @@ function switchPlayer() {
 
 
 function startPlayerTimer(player) {
-  if (player === player1) {
-    player1Timer = setInterval(() => {
-      player1Time++;
-      document.getElementById('player1-timer').textContent = convert_toMinutes(player1Time);
-      console.log(document.getElementById('player1-timer').textContent)
-    }, 1000);
-  } else {
-    player2Timer = setInterval(() => {
-      player2Time++;
-      document.getElementById('player2-timer').textContent = convert_toMinutes(player2Time);
-      console.log(document.getElementById('player2-timer').textContent)
-    }, 1000);
+  if(timer_on){
+    if (player === player1) {
+      stopPlayerTimer(player1);
+      player1Timer = setInterval(() => {
+        player1Time++;
+        document.getElementById('player1-timer').textContent = convert_toMinutes(player1Time);
+      }, 1000);
+    } else {
+      clearInterval(player2Timer);
+      player2Timer = setInterval(() => {
+        player2Time++;
+        document.getElementById('player2-timer').textContent = convert_toMinutes(player2Time);
+      }, 1000);
+    }
   }
 }
 
@@ -324,8 +335,8 @@ function createBoard() {
     board.appendChild(cardElement);
   });
 
-  clearInterval(player1Timer);
-  clearInterval(player2Timer);
+  stopPlayerTimer(player1Timer);
+  stopPlayerTimer(player2Timer);
   player1Time = 0;
   player2Time = 0;
   player1Score = 0;
@@ -337,6 +348,11 @@ function createBoard() {
 function flipCard() {
 
   if (isChecking) return;
+
+  if(timer_on && !isTimerStarted){
+    startPlayerTimer(player1);
+    isTimerStarted = true;
+  }
 
   const card = this;
   card.classList.add('flipped');
@@ -376,15 +392,15 @@ function checkMatch() {
     isChecking = false;
 
     if (matchedCards.length === 16) {
-      clearInterval(player1Timer);
-      clearInterval(player2Timer);
+      stopPlayerTimer(player1);
+      stopPlayerTimer(player2);
       setTimeout(() => alert('Game Over!'), 500);
 
       let score1 = new Score(player1Score, player1.textContent, player1Time);
       let score2 = new Score(player2Score, player2.textContent, player2Time);
       arr.push(score1);
       arr.push(score2);
-      addToLeaderboard();
+      fill_leaderboard();
     }
   } else {
     setTimeout(() => {
@@ -405,9 +421,18 @@ function checkMatch() {
 
 let table = document.querySelector("table tbody");
 
+//Function to take time and convert it into minutes
+function convert_toMinutes(time){
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    if(time == 0) return '-';
+    return `${minutes}m ${seconds < 10 ? '0' : ''}${seconds}s`; //
+}
 //Creates the rows and fills with data
 function fill_leaderboard(){
-    arr.forEach((score, index) => {
+  sort_array();
+  const topScores = arr.slice(0, 6);
+  topScores.forEach((score, index) => {
         let row = document.createElement("tr");
         row.innerHTML = `
         <td>${index + 1}</td>
@@ -423,35 +448,28 @@ function fill_leaderboard(){
     });
 }
 
-//Function to take time and convert it into minutes
-function convert_toMinutes(time){
-    const minutes = Math.floor(time / 60);
-    const seconds = time % 60;
-    return `${minutes}m ${seconds < 10 ? '0' : ''}${seconds}s`; //
-}
-//Function to take time and convert it into seconds
-function convert_toSeconds(time){
-    let [minutes, seconds] = time.split(' ');
-    let min = parseInt(minutes.replace('m', ''), 10);
-    let sec = parseInt(seconds.replace('s', ''), 10);
-    return (min*60) + sec;
-}
-
-function addToLeaderboard(){
-
+function sort_array(){
   arr.sort((a,b) => {
     //Check if the scores are the same or not
-    let timeA, timeB;
     if(b.score !== a.score) 
         return b.score - a.score;
     //If the scores are the same, compare the times
     
-    timeA = a.time === '-' ? Infinity : convert_toSeconds(a.time);
-    timeB = b.time === '-' ? Infinity : convert_toSeconds(b.time);
+    let timeA = a.time === '-' ? 1000 : a.time;
+    let timeB = b.time === '-' ? 1000 : b.time;
     return timeA -timeB;
   });
+}
 
-  fill_leaderboard();
+function fill_randomData(){
+  const random_scores = [
+    new Score(5, "Player", 25),
+    new Score(4, "Player", 18),
+    new Score(2, "Player", 15),
+    new Score(3, "Player", 35),
+  ]
+
+  random_scores.forEach((a) => arr.push(a));
 }
 
 
