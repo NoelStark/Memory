@@ -1,26 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Game Menu and Settings</title>
-    <link rel="stylesheet" href="gamemenu.css">
+    <link rel="stylesheet" href="gamemenu.css" />
   </head>
   <body>
     <!-- Navbar -->
     <div>
       <ul class="navbar">
-        <li><img id="hamburger-icon" src="./assets/burger-menu.png" alt="Hamburger Menu" style="display: none;"></li>
+        <li>
+          <img
+            id="hamburger-icon"
+            src="./assets/burger-menu.png"
+            alt="Hamburger Menu"
+            style="display: none"
+          />
+        </li>
         <li>Game Menu</li>
-        <li><img class="gameMenu-exitBtn" src="./assets/exit.png" alt="Exit"></li>
+        <li>
+          <img class="gameMenu-exitBtn" src="./assets/exit.png" alt="Exit" />
+        </li>
       </ul>
     </div>
     <!-- Hamburger Menu-->
-    <div id="hamburger-menu" style="display: none;">
+    <div id="hamburger-menu" style="display: none">
       <ul>
         <li>
           <a class="menu-Icon" id="gameMenu-playBtn"
-            >Play<img src="./assets/arrow.png" id="hamburger-play" alt=""></a>
+            >Play<img src="./assets/arrow.png" id="hamburger-play" alt=""
+          /></a>
         </li>
         <li>
           <a class="menu-Icon" id="gameMenu-leaderboardBtn">
@@ -28,7 +38,7 @@
               src="./assets/leaderboard.png"
               id="hamburger-leaderboard"
               alt=""
-            >Leaderboard</a
+            />Leaderboard</a
           >
         </li>
         <li>
@@ -37,12 +47,12 @@
               src="./assets/settings.png"
               id="hamburger-settings"
               alt=""
-            >Settings</a
+            />Settings</a
           >
         </li>
         <li>
           <a class="menu-Icon gameMenu-exitBtn"
-            ><img src="./assets/exit.png" id="hamburger-exit" alt="">Exit</a
+            ><img src="./assets/exit.png" id="hamburger-exit" alt="" />Exit</a
           >
         </li>
       </ul>
@@ -86,26 +96,24 @@
     </div>
 
     <!-- Game Section-->
-    <div id="game-container" style="display: none;">
+    <div id="game-container" style="display: none">
       <button id="reset">Reset</button>
-      <div id="game-area"> 
+      <div id="game-area">
         <div id="game-board" class="board"></div>
         <div id="players">
-            <p id="player1">Player 1</p>
-            <p>Score: <span id="player1-score">0</span></p>
-            <p>Time: <span id="player1-timer">0m 00s</span></p>
-            <br>
-            <p id="player2">Player 2</p>
-            <p>Score: <span id="player2-score">0</span></p>
-            <p>Time: <span id="player2-timer">0m 00s</span></p>
+          <p id="player1">Player 1</p>
+          <p>Score: <span id="player1-score">0</span></p>
+          <p>Time: <span id="player1-timer">0m 00s</span></p>
+          <br />
+          <p id="player2">Player 2</p>
+          <p>Score: <span id="player2-score">0</span></p>
+          <p>Time: <span id="player2-timer">0m 00s</span></p>
         </div>
       </div>
     </div>
 
     <!-- Settings Menu Section (Initially Hidden) -->
-    <div
-      id="settingsMenu-container"
-      class="settings-container" >
+    <div id="settingsMenu-container" class="settings-container">
       <h1>Settings</h1>
       <h2>Game Difficulty</h2>
       <div id="settings-buttons">
