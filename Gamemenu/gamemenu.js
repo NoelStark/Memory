@@ -243,7 +243,7 @@ function resetGameBoard() {
 // Korten som ska visas på spelbordet
 const cards = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
 
-// Håller reda på de kort som har vänds
+
 // blanda korten
 function shuffle(array) {
     return array.sort(() => 0.5 - Math.random());
