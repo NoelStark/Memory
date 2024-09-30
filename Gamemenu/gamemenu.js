@@ -253,7 +253,6 @@ let matchedCards = [];
 let isChecking = false;
 let arr = [];
 let card_score = 0;
-let seconds;
 let timer_on = false;
 const player1 = document.getElementById('player1');
 const player2 = document.getElementById('player2');
@@ -265,6 +264,8 @@ let player2Time = 0;
 let player1Timer, player2Timer;
 let isTimerStarted = false;
 
+
+//Function to switch players turns
 function switchPlayer() {
   if (current_player === player1) {
     player1.classList.remove("active");
@@ -281,7 +282,7 @@ function switchPlayer() {
   }
 }
 
-
+//Starts the player timers
 function startPlayerTimer(player) {
   if(timer_on){
     if (player === player1) {
@@ -300,6 +301,7 @@ function startPlayerTimer(player) {
   }
 }
 
+//Function to stop player timers
 function stopPlayerTimer(player) {
   if (player === player1) {
     clearInterval(player1Timer);
@@ -309,7 +311,7 @@ function stopPlayerTimer(player) {
 }
 
 
-//  skapa spelbordet
+//  Function to create the game board
 function createBoard() {
   player1.classList.add("active");
   const board = document.getElementById('game-board');
@@ -344,11 +346,12 @@ function createBoard() {
   
 }
 
-// vända kortet
+// Function to flip card
 function flipCard() {
 
   if (isChecking) return;
 
+  //If the User turned on timer, start the timer for player1
   if(timer_on && !isTimerStarted){
     startPlayerTimer(player1);
     isTimerStarted = true;
@@ -361,6 +364,7 @@ function flipCard() {
 
   flippedCards.push(card);
 
+  //Once 2 cards have been flipped
   if (flippedCards.length === 2) {
     isChecking = true;
     checkMatch();
@@ -370,13 +374,13 @@ function flipCard() {
 // kontrollera om korten matchar
 function checkMatch() {
   const [card1, card2] = flippedCards;
-
+  //Checks if the two flipped cards match
   if (card1.dataset.value === card2.dataset.value) {
     card1.classList.add('match');
     card2.classList.add('match');
     card_score++;
     matchedCards.push(card1, card2);
-
+    //If-statement to change scores after a card-match
     if (current_player === player1) {
       player1Score++;
       document.getElementById('player1-score').textContent = player1Score;
@@ -390,7 +394,7 @@ function checkMatch() {
   }, 2000);
     flippedCards = [];
     isChecking = false;
-
+    //If all cards have been matched
     if (matchedCards.length === 16) {
       stopPlayerTimer(player1);
       stopPlayerTimer(player2);
@@ -461,6 +465,8 @@ function sort_array(){
   });
 }
 
+
+//Function to fill the leaderboard with some random data
 function fill_randomData(){
   const random_scores = [
     new Score(5, "Player", 25),
@@ -472,7 +478,7 @@ function fill_randomData(){
   random_scores.forEach((a) => arr.push(a));
 }
 
-
+//Function that animates the header for the leaderboard
 function animate_Header(){
   const tableHeader = document.querySelector("table thead");
   setTimeout(() => {

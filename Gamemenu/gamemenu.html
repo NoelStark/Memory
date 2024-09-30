@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Menu and Settings</title>
-    <link rel="stylesheet" href="gamemenu.css" />
+    <link rel="stylesheet" href="gamemenu.css">
   </head>
   <body>
     <!-- Navbar -->
@@ -16,11 +16,11 @@
             src="./assets/burger-menu.png"
             alt="Hamburger Menu"
             style="display: none"
-          />
+          >
         </li>
         <li>Game Menu</li>
         <li>
-          <img class="gameMenu-exitBtn" src="./assets/exit.png" alt="Exit" />
+          <img class="gameMenu-exitBtn" src="./assets/exit.png" alt="Exit">
         </li>
       </ul>
     </div>
@@ -30,7 +30,7 @@
         <li>
           <a class="menu-Icon" id="gameMenu-playBtn"
             >Play<img src="./assets/arrow.png" id="hamburger-play" alt=""
-          /></a>
+          ></a>
         </li>
         <li>
           <a class="menu-Icon" id="gameMenu-leaderboardBtn">
@@ -38,7 +38,7 @@
               src="./assets/leaderboard.png"
               id="hamburger-leaderboard"
               alt=""
-            />Leaderboard</a
+            >Leaderboard</a
           >
         </li>
         <li>
@@ -47,12 +47,12 @@
               src="./assets/settings.png"
               id="hamburger-settings"
               alt=""
-            />Settings</a
+            >Settings</a
           >
         </li>
         <li>
           <a class="menu-Icon gameMenu-exitBtn"
-            ><img src="./assets/exit.png" id="hamburger-exit" alt="" />Exit</a
+            ><img src="./assets/exit.png" id="hamburger-exit" alt="">Exit</a
           >
         </li>
       </ul>
@@ -66,7 +66,7 @@
       </p>
       <form id="loginForm">
         <p>
-          <label for="UserName">Username</label>
+          <label for="username">Username</label>
           <input
             type="text"
             name="username"
@@ -74,7 +74,7 @@
             autocomplete="on"
             placeholder="Enter Username"
             required
-          />
+          >
         </p>
         <p>
           <label for="password">Password</label>
@@ -84,7 +84,7 @@
             id="password"
             placeholder="xxxxxx"
             required
-          />
+          >
         </p>
         <p>
           <button type="button" id="loginButton">Login</button>
@@ -101,11 +101,11 @@
       <div id="game-area">
         <div id="game-board" class="board"></div>
         <div id="players">
-          <div id="editBtn"><img src="assets/edit.png" /></div>
+          <div id="editBtn"><img src="assets/edit.png" alt="Edit button"></div>
           <p id="player1">Player 1</p>
           <p>Score: <span id="player1-score">0</span></p>
           <p>Time: <span id="player1-timer">0m 00s</span></p>
-          <br />
+          <br>
           <p id="player2">Player 2</p>
           <p>Score: <span id="player2-score">0</span></p>
           <p>Time: <span id="player2-timer">0m 00s</span></p>
